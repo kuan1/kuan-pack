@@ -1,4 +1,4 @@
-import './1.scss'
+import './test.scss'
 
 function test() {
   const div = document.createElement('div')

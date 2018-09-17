@@ -6,7 +6,6 @@ module.exports = {
   getProdConfig
 }
 
-
 /*
   const options = {
     entry: '', // 打包入口

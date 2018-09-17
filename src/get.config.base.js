@@ -6,31 +6,26 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const WebpackBar = require('webpackbar')
 
-const {vueLoader, sassLoader} = require('./tool')
+const { vueLoader, sassLoader } = require('./loaders')
 
 const basePath = process.cwd()
 const resolve = (dir) => path.join(basePath, dir)
 
-module.exports = ({staticPath = 'static', entry = resolve('src/index.js')} = {}) => {
+module.exports = (
+  {
+    staticPath = 'static',
+    entry = resolve('src/index.js')
+  } = {}
+) => {
   return {
     entry,
     output: {
       filename: 'js/[name].[hash].js',
-      chunkFilename: 'js/[id].[hash].js',
+      chunkFilename: 'js/[id].[hash].js'
     },
     module: {
       rules: [
-        {
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          enforce: 'pre',
-          include: [resolve('src')],
-          options: {
-            formatter: require('eslint-friendly-formatter'),
-            emitWarning: true
-          }
-        },
-        {test: /.vue$/, loader: 'vue-loader', options: vueLoader},
+        { test: /.vue$/, loader: 'vue-loader', options: vueLoader },
         {
           test: /\.js$/,
           exclude: /node_modules/,
@@ -45,19 +40,19 @@ module.exports = ({staticPath = 'static', entry = resolve('src/index.js')} = {})
           loader: 'url-loader',
           options: {
             limit: 10000,
-            name: 'images/[name].[ext]?[hash]',
-          },
+            name: 'images/[name].[ext]?[hash]'
+          }
         },
         {
           test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
           loader: 'url-loader',
           options: {
             limit: 10000,
-            name: 'fonts/[name].[ext]?[hash]',
+            name: 'fonts/[name].[ext]?[hash]'
           }
         },
-        {test: /\.(scss|css)$/, use: sassLoader},
-      ],
+        { test: /\.(scss|css)$/, use: sassLoader }
+      ]
     },
     resolve: {
       extensions: ['.js', '.vue', '.json'],
@@ -65,7 +60,7 @@ module.exports = ({staticPath = 'static', entry = resolve('src/index.js')} = {})
         'vue$': 'vue/dist/vue.esm.js',
         '@': resolve('src'),
         'kuan-pack': `${__dirname}, 'index'`
-      },
+      }
     },
     optimization: {
       namedChunks: true,
@@ -78,14 +73,14 @@ module.exports = ({staticPath = 'static', entry = resolve('src/index.js')} = {})
             minChunks: 2,
             maxInitialRequests: 5,
             minSize: 0,
-            priority: 0,
+            priority: 0
           },
           vendor: {
             chunks: 'initial', // "initial", "async", "all"
             test: /node_modules/, // /[\\/]node_modules[\\/]vue/,
             name: 'vendor',
             priority: -10,
-            enforce: true,
+            enforce: true
           }
         }
       }
@@ -99,11 +94,11 @@ module.exports = ({staticPath = 'static', entry = resolve('src/index.js')} = {})
       }),
       new CopyWebpackPlugin(
         fs.existsSync(resolve(staticPath)) ?
-        [{
-          from: resolve(staticPath),
-          to: '',
-          ignore: ['.*'],
-        }] : []
+          [{
+            from: resolve(staticPath),
+            to: '',
+            ignore: ['.*']
+          }] : []
       ),
       new HtmlWebpackPlugin({
         template: 'index.html',
@@ -114,9 +109,9 @@ module.exports = ({staticPath = 'static', entry = resolve('src/index.js')} = {})
           collapseWhitespace: true,
           removeAttributeQuotes: true,
           minifyJS: true,
-          minifyCSS: true,
+          minifyCSS: true
         },
-        chunksSortMode: 'dependency',
+        chunksSortMode: 'dependency'
       }),
       new WebpackBar()
     ]
