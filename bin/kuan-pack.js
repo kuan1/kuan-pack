@@ -1,19 +1,16 @@
-const webpackConfig = require('../src/webpack.config')
-const devServer = require('../src/dev')
-const build = require('../src/build')
+#!/usr/bin/env node
 
 switch (process.argv[2]) {
   case 'dev':
+    // 本地开发
     process.env.NODE_ENV = 'development'
-    devServer({
-      webpackConfig,
-    })
+    const serve = require('../src/dev')
+    serve()
     break
   case 'build':
     process.env.NODE_ENV = 'production'
-    build({
-      webpackConfig
-    })
+    const build = require('../src/build')
+    build()
     break
   default:
     console.error(`Unknown command ${process.argv[2]}`)

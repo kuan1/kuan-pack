@@ -11,7 +11,7 @@
     "build": "kuan-pack build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["webpack", "luzhongk"],
   "author": "",
   "license": "ISC",
   "repository": {

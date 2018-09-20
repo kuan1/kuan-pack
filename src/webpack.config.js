@@ -9,6 +9,8 @@ const WebpackBar = require('webpackbar')
 const { vueLoader, sassLoader, lessLoader } = require('./loaders')
 const {resolve, userConfig} = require('./utils')
 
+const htmlTemplate = fs.existsSync(resolve('index.html')) ? resolve('index.html') : `${__dirname}/../index.html`
+
 const {
   entry = resolve('src'),
   publicPath = '',
@@ -103,7 +105,7 @@ const webpackConfig = {
         }] : []
     ),
     new HtmlWebpackPlugin({
-      template: 'index.html',
+      template: htmlTemplate,
       path: publicPath,
       inject: true,
       minify: {

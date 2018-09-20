@@ -5,9 +5,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
+const defaultWebpackConfig = require('../src/webpack.config')
+
 const {resolve} = require('./utils')
 
-module.exports = ({webpackConfig: commonConfig, onSuccess, onFail}) => {
+module.exports = ({webpackConfig: commonConfig = defaultWebpackConfig, onSuccess, onFail} = {}) => {
   const webpackConfig = merge(commonConfig, {
     mode: 'production',
     optimization: {

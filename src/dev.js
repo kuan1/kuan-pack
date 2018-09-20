@@ -2,6 +2,8 @@ const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 const chalk = require('chalk')
 const portfinder = require('portfinder')
+
+const defaultWebpackConfig = require('../src/webpack.config')
 const {userConfig} = require('./utils')
 
 const DEFAULT_PORT = process.env.PORT || 8888
@@ -14,13 +16,13 @@ const noop = () => {}
 
 module.exports = function dev(
   {
-    webpackConfig,
+    webpackConfig = defaultWebpackConfig,
     contentBase,
     onCompileDone = noop,
     proxy = userProxy,
     port,
     serverConfig: serverConfigFromOpts = {},
-  }) {
+  } = {}) {
   choosePort(port || DEFAULT_PORT)
     .then(port => {
       if (port === null) {

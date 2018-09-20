@@ -4,7 +4,7 @@ const path = require('path')
 // 获取用户webpack配置
 const userConfig = (() => {
   const configPath = resolve('kuan-pack.js')
-  if (!fs.existsSync) return {}
+  if (!fs.existsSync(configPath)) return {}
   return require(configPath)
 })()
 

@@ -1,5 +1,22 @@
 # kuan-pack
-> 加入常用webpack配置，安装直接使用
+> 简化webpack，安装直接使用，不需要安装任何东西
+
+## 安装
+```
+yarn add kuan-pack --dev
+# or
+npm run kuan-pack -D
+```
+
+## 开发
+```
+kuan-pack dev
+```
+
+## 编译
+```
+kuan-pack build
+```
 
 ## webpack配置
 > 根目录放置 kuan-pack.js
