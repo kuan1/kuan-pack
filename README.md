@@ -1,24 +1,23 @@
 # kuan-pack
-> 统一管理webpack配置，准备中
+> 加入常用webpack配置，安装直接使用
 
-## 项目根目录下边创建.eslintrc，统一管理eslint风格
+## webpack配置
+> 根目录放置 kuan-pack.js
 ```
-{
-  "extends": "kuan-pack/eslint",
-  "rules": {
+const path = require('path')
+
+module.exports = {
+  entry: path.resolve(__dirname, 'test'),
+  publicPath: '', // 只针对生产环境
+  distPath: path.resolve(__dirname, 'dist'), // 只针对生产环境
+  proxy: {
+    '/api': {
+      target: 'https://luzhongkuan.cn/api',
+      changeOrigin: true
+    }
+  },
+  config: {
+    // 会合并到webpack.config
   }
 }
-```
-
-## 获取webpack配置
-```
-const options = {
-  entry: '', // 打包入口
-  PORT: '', // 端口号
-  proxy: '', // 代理地址
-  staticPath: '静态目录地址', // 静态资源地址
-  publicPath: 'cdn路径', // cdn地址
-  distPath: 'dist' // 打包目录
-}
-const devConfig = getDevConfig(options)
 ```
