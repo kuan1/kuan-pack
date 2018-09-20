@@ -5,4 +5,5 @@ function test() {
   div.innerHTML = process.env.NODE_ENV
   document.body.appendChild(div)
 }
+
 test()
