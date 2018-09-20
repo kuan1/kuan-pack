@@ -2,9 +2,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const isProd = process.env.NODE_ENV === 'production'
 
-// lessLoader
+console.log(process.env.NODE_ENV)
 
-// sassLoader
+// cssLoader
 const getCssLoader = (name) => {
   return [
     { loader: !isProd ? 'style-loader' : MiniCssExtractPlugin.loader}, // 将 JS 字符串生成为 style 节点

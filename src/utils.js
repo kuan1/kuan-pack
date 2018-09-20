@@ -17,10 +17,11 @@ function resolve(dir) {
 // 日志
 function log(data) {
   // console.log(data)
+  if (process.env.NODE_ENV === 'production') return
   const logPath = path.resolve(__dirname, 'log.json')
   try {
     fs.writeFileSync(logPath, JSON.stringify(data, null, 2), 'utf-8')
-    console.log('出现错误，已经保存日志')
+    console.log('- 已经保存日志')
   }catch (e) {
     console.log('失败', e)
   }
