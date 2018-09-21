@@ -6,6 +6,7 @@
   "bin": {
     "kuan-pack": "bin/kuan-pack.js"
   },
+  "files": ["bin", "src"],
   "scripts": {
     "dev": "kuan-pack dev",
     "build": "kuan-pack build",

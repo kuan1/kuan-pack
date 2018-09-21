@@ -9,12 +9,14 @@ const WebpackBar = require('webpackbar')
 const { vueLoader, sassLoader, lessLoader } = require('./loaders')
 const {resolve, userConfig} = require('./utils')
 
-const htmlTemplate = fs.existsSync(resolve('index.html')) ? resolve('index.html') : `${__dirname}/../index.html`
+const defaultHtmlTemplate = fs.existsSync(resolve('index.html')) ? resolve('index.html') : `${__dirname}/../index.html`
 
 const {
   entry = resolve('src'),
   publicPath = '',
   distPath = resolve('dist'),
+  htmlTemplate = defaultHtmlTemplate,
+  htmlName = 'index.html',
   config: configFormUser = {}
 } = userConfig
 
@@ -107,6 +109,7 @@ const webpackConfig = {
     new HtmlWebpackPlugin({
       template: htmlTemplate,
       path: publicPath,
+      filename: htmlName,
       inject: true,
       minify: {
         removeComments: true,
