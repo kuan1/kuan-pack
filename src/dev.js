@@ -8,7 +8,7 @@ const {userConfig} = require('./utils')
 
 const DEFAULT_PORT = process.env.PORT || 8888
 const HOST = process.env.HOST || '0.0.0.0'
-const {proxy: userProxy} = userConfig
+const {proxy: userProxy, historyApiFallback: userHistoryApiFallback = false} = userConfig
 
 process.env.NODE_ENV = 'development'
 
@@ -21,6 +21,7 @@ module.exports = function dev(
     onCompileDone = noop,
     proxy = userProxy,
     port,
+    historyApiFallback = userHistoryApiFallback,
     serverConfig: serverConfigFromOpts = {},
   } = {}) {
   choosePort(port || DEFAULT_PORT)
@@ -57,7 +58,7 @@ module.exports = function dev(
         watchOptions: {
           ignored: /node_modules/,
         },
-        historyApiFallback: false,
+        historyApiFallback,
         overlay: false,
         host: HOST,
         proxy,

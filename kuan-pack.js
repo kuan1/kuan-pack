@@ -12,6 +12,7 @@ module.exports = {
       changeOrigin: true
     }
   },
+  historyApiFallback: true, // history路由刷新
   config: {
     // 会合并到webpack.config
   }
