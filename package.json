@@ -1,14 +1,15 @@
 {
   "name": "kuan-pack",
   "version": "1.0.2",
-  "description": "",
+  "description": "webpack.config.js",
   "main": "src/index.js",
   "bin": {
     "kuan-pack": "bin/kuan-pack.js"
   },
   "files": [
     "bin",
-    "src"
+    "src",
+    "index.html"
   ],
   "scripts": {
     "dev": "kuan-pack dev",
