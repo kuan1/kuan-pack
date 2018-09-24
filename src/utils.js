@@ -3,7 +3,7 @@ const path = require('path')
 
 // 获取用户webpack配置
 const userConfig = (() => {
-  const configPath = resolve('kuan-pack.js')
+  const configPath = resolve('kuan.js')
   if (!fs.existsSync(configPath)) return {}
   return require(configPath)
 })()
@@ -22,7 +22,7 @@ function log(data) {
   try {
     fs.writeFileSync(logPath, JSON.stringify(data, null, 2), 'utf-8')
     console.log('- 已经保存日志')
-  }catch (e) {
+  } catch (e) {
     console.log('失败', e)
   }
 }
