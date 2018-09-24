@@ -1,7 +1,9 @@
 # kuan-pack
-> 简化webpack，安装直接使用，不需要安装其他依赖，甚至不需要配置。默认支持vue
+
+> 简化 webpack，安装直接使用，不需要安装其他依赖，甚至不需要配置。默认支持 vue
 
 ## 安装
+
 ```
 yarn add kuan-pack --dev
 # or
@@ -9,17 +11,21 @@ npm run kuan-pack -D
 ```
 
 ## 开发
+
 ```
 kuan-pack dev
 ```
 
 ## 编译
+
 ```
 kuan-pack build
 ```
 
-## webpack配置
-> 根目录放置 kuan-pack.js
+## webpack 配置
+
+> 根目录放置 kuan.js (kuan-pack.js 和 bin 下路径包名冲突)
+
 ```
 const path = require('path')
 
