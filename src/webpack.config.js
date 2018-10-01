@@ -6,18 +6,26 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const WebpackBar = require('webpackbar')
 
-const { vueLoader, sassLoader, lessLoader } = require('./loaders')
-const {resolve, userConfig} = require('./utils')
+const {
+  vueLoader,
+  sassLoader,
+  lessLoader
+} = require('./loaders')
+const {
+  resolve,
+  userConfig
+} = require('./utils')
 
 const defaultHtmlTemplate = fs.existsSync(resolve('index.html')) ? resolve('index.html') : `${__dirname}/../index.html`
 
 const {
   entry = resolve('src'),
-  publicPath = '',
-  distPath = resolve('dist'),
-  htmlTemplate = defaultHtmlTemplate,
-  htmlName = 'index.html',
-  config: configFormUser = {}
+    publicPath = '',
+    distPath = resolve('dist'),
+    htmlTemplate = defaultHtmlTemplate,
+    htmlName = 'index.html',
+    staticPath = resolve('public'),
+    config: configFormUser = {}
 } = userConfig
 
 const webpackConfig = {
@@ -29,8 +37,11 @@ const webpackConfig = {
     chunkFilename: 'js/[id].[hash].js'
   },
   module: {
-    rules: [
-      { test: /.vue$/, loader: 'vue-loader', options: vueLoader },
+    rules: [{
+        test: /.vue$/,
+        loader: 'vue-loader',
+        options: vueLoader
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -56,8 +67,14 @@ const webpackConfig = {
           name: 'fonts/[name].[ext]?[hash]'
         }
       },
-      { test: /\.(scss|css)$/, use: sassLoader },
-      { test: /\.less$/, use: lessLoader }
+      {
+        test: /\.(scss|css)$/,
+        use: sassLoader
+      },
+      {
+        test: /\.less$/,
+        use: lessLoader
+      }
     ]
   },
   resolve: {
@@ -99,12 +116,11 @@ const webpackConfig = {
       }
     }),
     new CopyWebpackPlugin(
-      fs.existsSync(resolve('static')) ?
-        [{
-          from: resolve('static'),
-          to: '',
-          ignore: ['.*']
-        }] : []
+      fs.existsSync(staticPath) ? [{
+        from: staticPath,
+        to: '',
+        ignore: ['.*']
+      }] : []
     ),
     new HtmlWebpackPlugin({
       template: htmlTemplate,
