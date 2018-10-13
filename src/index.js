@@ -1,9 +1,7 @@
 const dev = require('./dev')
-const build = require('build')
-const webpackConfig = require('./webpack.config')
+const build = require('./build')
 
 module.exports = {
   dev,
-  build,
-  webpackConfig
+  build
 }

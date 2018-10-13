@@ -3,33 +3,25 @@ const WebpackDevServer = require('webpack-dev-server')
 const chalk = require('chalk')
 const portfinder = require('portfinder')
 
-const defaultWebpackConfig = require('../src/webpack.config')
-const {userConfig} = require('./utils')
+const getBaseConfig = require('./webpckConfig/getBaseConfig')
+const defaultConfig = require('./webpckConfig/default')
 
-const DEFAULT_PORT = process.env.PORT || 8888
 const HOST = process.env.HOST || '0.0.0.0'
-const {proxy: userProxy, historyApiFallback: userHistoryApiFallback = false} = userConfig
 
-process.env.NODE_ENV = 'development'
-
-const noop = () => {}
-
-module.exports = function dev(
-  {
-    webpackConfig = defaultWebpackConfig,
-    contentBase,
-    onCompileDone = noop,
-    proxy = userProxy,
+module.exports = function dev(userConfig, onCompileDone) {
+  const webpackConfig = getBaseConfig(userConfig)
+  const {
     port,
-    historyApiFallback = userHistoryApiFallback,
-    serverConfig: serverConfigFromOpts = {},
-  } = {}) {
-  choosePort(port || DEFAULT_PORT)
+    proxy
+  } = {
+    ...defaultConfig,
+    ...userConfig
+  }
+  choosePort(port)
     .then(port => {
-      if (port === null) {
-        return
-      }
+      if (!port) return null
       webpackConfig.mode = 'development'
+
       const compiler = webpack(webpackConfig)
       compiler.hooks.done.tap('webpack dev', stats => {
         const message = `${stats.toString({colors: true})} \n`
@@ -40,10 +32,13 @@ module.exports = function dev(
         }
         console.log(message)
         console.log(`- App running at: ${chalk.cyan(`http://localhost:${port}`)}`)
-        onCompileDone({
-          stats
-        })
+        if (onCompileDone) {
+          onCompileDone({
+            stats
+          })
+        }
       })
+
       const serverConfig = {
         disableHostCheck: true,
         compress: true,
@@ -54,26 +49,19 @@ module.exports = function dev(
           'access-control-allow-origin': '*',
         },
         stats: 'normal', // minimal normal
-        publicPath: webpackConfig.output.publicPath,
+        publicPath: webpackConfig.output.publicPath || '',
         watchOptions: {
           ignored: /node_modules/,
         },
-        historyApiFallback,
+        historyApiFallback: true,
         overlay: false,
         host: HOST,
         proxy,
-        contentBase: contentBase || process.env.CONTENT_BASE,
-        ...serverConfigFromOpts,
         ...(webpackConfig.devServer || {}),
       }
-      const server = new WebpackDevServer(compiler, serverConfig);
-      ['SIGINT', 'SIGTERM'].forEach(signal => {
-        process.on(signal, () => {
-          server.close(() => {
-            process.exit(0)
-          })
-        })
-      })
+
+      const server = new WebpackDevServer(compiler, serverConfig)
+
       server.listen(port, HOST, err => {
         if (err) {
           console.log(err)
