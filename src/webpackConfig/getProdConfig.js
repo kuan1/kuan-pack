@@ -10,7 +10,7 @@ const {
   resolve
 } = require('./utils')
 
-module.exports = function getProdConfig(userConfig) {
+module.exports = function getProdConfig(userConfig = {}) {
   const webpackConfig = getBaseConfig(userConfig)
   return merge(webpackConfig, {
     mode: 'production',
@@ -22,7 +22,7 @@ module.exports = function getProdConfig(userConfig) {
     },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: './css/[name].[hash:7].css',
+        filename: `./css/[${userConfig.libName || 'name'}].[hash:7].css`,
         chunkFilename: './css/[id].[hash:7].css',
       }),
       new CleanWebpackPlugin([webpackConfig.output.path || resolve('dist')], {
