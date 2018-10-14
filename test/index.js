@@ -2,5 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 
 new Vue({
-  render: () => render(App)
-}).$mount('#app')
+  el: '#app',
+  template: '<App/>',
+  components: {
+    App
+  }
+})
