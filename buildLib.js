@@ -1,7 +1,9 @@
 process.env.NODE_ENV = 'production'
 
 const {
-  build
+  buildLib
 } = require('./src')
 
-build()
+buildLib({
+  entry: `${__dirname}/test`
+})

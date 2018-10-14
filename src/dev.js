@@ -3,8 +3,8 @@ const WebpackDevServer = require('webpack-dev-server')
 const chalk = require('chalk')
 const portfinder = require('portfinder')
 
-const getBaseConfig = require('./webpckConfig/getBaseConfig')
-const defaultConfig = require('./webpckConfig/default')
+const getBaseConfig = require('./webpackConfig/getBaseConfig')
+const defaultConfig = require('./webpackConfig/default')
 
 const HOST = process.env.HOST || '0.0.0.0'
 

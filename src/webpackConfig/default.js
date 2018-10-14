@@ -3,8 +3,6 @@ const {
   resolve
 } = require('./utils')
 
-console.log(fs.existsSync(resolve('index.html')))
-
 // webpack默认配置
 const defaultConfig = {
   port: 8000, // 开发端口

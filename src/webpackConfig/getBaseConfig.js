@@ -12,7 +12,7 @@ const {
   resolve,
 } = require('./utils')
 
-console.log('dev:', process.env.NODE_ENV)
+console.log('当前环境 NODE_ENV:', process.env.NODE_ENV)
 
 module.exports = function getBaseConfig(userConfig) {
   const {

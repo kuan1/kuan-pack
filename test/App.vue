@@ -10,5 +10,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less" scoped>
+div {
+  color: red;
+  h2 {
+    background: url(./apple.jpg);
+    background-size: 100% 100%;
+  }
+}
 </style>
