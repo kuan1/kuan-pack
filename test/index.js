@@ -1,9 +1,6 @@
-import './test.scss'
+import Vue from 'vue'
+import App from './App.vue'
 
-function test() {
-  const div = document.createElement('div')
-  div.innerHTML = process.env.NODE_ENV
-  document.body.appendChild(div)
-}
-
-test()
+new Vue({
+  render: () => render(App)
+}).$mount('#app')
