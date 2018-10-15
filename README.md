@@ -51,6 +51,10 @@ module.exports = {
 
 ## 更新
 
+v1.0.9
+
+- 默认 html 模板
+
 v1.0.8
 
 - 添加打包插件功能 使用: `kuan-pack build:lib`, 获取自定义使用 `buildLib.js`
