@@ -13,7 +13,8 @@ const defaultConfig = {
   htmlTemplate: fs.existsSync(resolve('index.html')) ? resolve('index.html') : `${__dirname}/../index.html`,
   htmlName: 'index.html', // 输出html路径 默认：'index.html'
   proxy: {}, // 代理地址
-  libName: '',
+  libName: process.env.npm_package_name,
+  extractCss: true,
   config: {} // 会合并到webpack.config
 }
 

@@ -10,9 +10,9 @@ const {
   resolve
 } = require('./utils')
 
-module.exports = function getProdConfig(userConfig = {}) {
+function getProdConfig(userConfig = {}) {
   const webpackConfig = getBaseConfig(userConfig)
-  return merge(webpackConfig, {
+  const finalConfig = merge(webpackConfig, {
     mode: 'production',
     optimization: {
       minimizer: [
@@ -30,4 +30,8 @@ module.exports = function getProdConfig(userConfig = {}) {
       })
     ]
   })
+
+  return finalConfig
 }
+
+module.exports = getProdConfig
