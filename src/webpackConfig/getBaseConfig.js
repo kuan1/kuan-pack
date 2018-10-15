@@ -8,9 +8,7 @@ const WebpackBar = require('webpackbar')
 const loaders = require('./loaders')
 const defaultConfig = require('./default')
 
-const {
-  resolve,
-} = require('./utils')
+const { resolve } = require('./utils')
 
 console.log('当前环境 NODE_ENV:', process.env.NODE_ENV)
 
@@ -37,7 +35,8 @@ module.exports = function getBaseConfig(userConfig) {
       chunkFilename: 'js/[id].[hash].js'
     },
     module: {
-      rules: [{
+      rules: [
+        {
           test: /.vue$/,
           loader: 'vue-loader',
           options: loaders.vueLoader
@@ -80,7 +79,7 @@ module.exports = function getBaseConfig(userConfig) {
     resolve: {
       extensions: ['.js', '.vue', '.json'],
       alias: {
-        'vue$': 'vue/dist/vue.esm.js',
+        vue$: 'vue/dist/vue.esm.js',
         '@': resolve('src'),
         'kuan-pack': `${__dirname}, 'index'`
       }
@@ -116,12 +115,21 @@ module.exports = function getBaseConfig(userConfig) {
         }
       }),
       new CopyWebpackPlugin(
-        fs.existsSync(staticPath) ? [{
-          from: staticPath,
-          to: '',
-          ignore: ['.*']
-        }] : []
+        fs.existsSync(staticPath)
+          ? [
+              {
+                from: staticPath,
+                to: '',
+                ignore: ['.*']
+              }
+            ]
+          : []
       ),
+      new WebpackBar()
+    ]
+  }
+  if (process.env.DISCARD_HTML !== '0') {
+    webpackConfig.plugins.push(
       new HtmlWebpackPlugin({
         template: htmlTemplate,
         path: publicPath,
@@ -135,9 +143,8 @@ module.exports = function getBaseConfig(userConfig) {
           minifyCSS: true
         },
         chunksSortMode: 'dependency'
-      }),
-      new WebpackBar()
-    ]
+      })
+    )
   }
   return merge(webpackConfig, configFormUser)
 }

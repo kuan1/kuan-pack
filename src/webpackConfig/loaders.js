@@ -1,11 +1,14 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const defaultConfig = require('./default')
 
-const isProd = process.env.NODE_ENV === 'production'
+const isExtract =
+  process.env.NODE_ENV === 'production' && process.env.EXTRACT_CSS !== '0'
 
 // cssLoader
-const getCssLoader = (name) => {
-  return [{
-      loader: !isProd ? 'style-loader' : MiniCssExtractPlugin.loader
+const getCssLoader = name => {
+  return [
+    {
+      loader: !isExtract ? 'style-loader' : MiniCssExtractPlugin.loader
     }, // 将 JS 字符串生成为 style 节点
     {
       loader: 'css-loader'
@@ -15,9 +18,9 @@ const getCssLoader = (name) => {
       options: {
         plugins: () => [
           require('autoprefixer')({
-            'browsers': ['> 1%', 'last 2 versions']
+            browsers: ['> 1%', 'last 2 versions']
           })
-        ],
+        ]
       }
     },
     {
@@ -43,11 +46,13 @@ const vueLoader = (() => {
       'postcss-import': {},
       'postcss-url': {},
       // to edit target browsers: use "browserslist" field in package.json
-      'autoprefixer': {}
+      autoprefixer: {}
     }
   }
 
-  const styleLoader = !isProd ? 'vue-style-loader' : MiniCssExtractPlugin.loader
+  const styleLoader = !isExtract
+    ? 'vue-style-loader'
+    : MiniCssExtractPlugin.loader
 
   return {
     loaders: {

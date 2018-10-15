@@ -6,31 +6,25 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const getBaseConfig = require('./getBaseConfig')
 
-const {
-  resolve
-} = require('./utils')
+const { resolve } = require('./utils')
 
 function getProdConfig(userConfig = {}) {
   const webpackConfig = getBaseConfig(userConfig)
   const finalConfig = merge(webpackConfig, {
     mode: 'production',
     optimization: {
-      minimizer: [
-        new OptimizeCSSAssetsPlugin({}),
-        new UglifyJsPlugin()
-      ]
+      minimizer: [new OptimizeCSSAssetsPlugin({}), new UglifyJsPlugin()]
     },
     plugins: [
       new MiniCssExtractPlugin({
         filename: `./css/[${userConfig.libName || 'name'}].[hash:7].css`,
-        chunkFilename: './css/[id].[hash:7].css',
+        chunkFilename: './css/[id].[hash:7].css'
       }),
       new CleanWebpackPlugin([webpackConfig.output.path || resolve('dist')], {
         root: process.cwd()
       })
     ]
   })
-
   return finalConfig
 }
 

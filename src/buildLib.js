@@ -10,6 +10,7 @@ module.exports = (userConfig, onSuccess, onFail) => {
   }
   const webpackConfig = getProdCOnfig(userConfig)
   webpackConfig.externals = [nodeExternals()]
+  delete webpackConfig.optimization
   const output = {
     filename: `${options.libName}.js`,
     library: options.libName,
@@ -20,9 +21,8 @@ module.exports = (userConfig, onSuccess, onFail) => {
     ...output
   }
 
-
   webpack(webpackConfig, (err, stats) => {
-    const message = `${stats.toString({colors: true})} \n`
+    const message = `${stats.toString({ colors: true })} \n`
     if (err || stats.hasErrors()) {
       process.stdout.write('\x07') // 声音报警
       console.log(err || message)
@@ -30,16 +30,16 @@ module.exports = (userConfig, onSuccess, onFail) => {
         onFail({
           err,
           stats
-        });
+        })
       }
-      process.exit(1);
+      process.exit(1)
     }
 
     if (onSuccess) {
       onSuccess({
         stats
-      });
+      })
     }
     console.log(message)
-  });
+  })
 }
