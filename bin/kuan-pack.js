@@ -16,8 +16,8 @@ switch (process.argv[2]) {
     process.env.NODE_ENV = 'production'
     process.env.EXTRACT_CSS = '0'
     process.env.DISCARD_HTML = '0'
-    const build = require('../src/buildLib')
-    build()
+    const buildLib = require('../src/buildLib')
+    buildLib()
     break
   default:
     console.error(`Unknown command ${process.argv[2]}`)
