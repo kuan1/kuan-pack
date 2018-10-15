@@ -20,6 +20,7 @@ kuan-pack dev
 
 ```
 kuan-pack build
+kuan-pack build:lib # 打包插件
 ```
 
 ## webpack 配置
@@ -49,6 +50,10 @@ module.exports = {
 ```
 
 ## 更新
+
+v1.0.8
+
+- 添加打包插件功能 使用: `kuan-pack build:lib`, 获取自定义使用 `buildLib.js`
 
 v1.0.7
 
