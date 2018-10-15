@@ -10,10 +10,10 @@ const defaultConfig = {
   distPath: resolve('dist'), // 输入地址 默认： dist
   htmlTemplate: fs.existsSync(resolve('index.html'))
     ? resolve('index.html')
-    : `${__dirname}/../index.html`,
+    : `${__dirname}/../../index.html`,
   htmlName: 'index.html', // 输出html路径 默认：'index.html'
   proxy: {}, // 代理地址
-  libName: 'boundle', // 打包插件名字
+  libName: 'boundle', // 打包插件inde名字
   config: {} // 会合并到webpack.config
 }
 
