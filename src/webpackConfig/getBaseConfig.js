@@ -67,12 +67,16 @@ module.exports = function getBaseConfig(userConfig) {
           }
         },
         {
-          test: /\.(scss|css)$/,
-          use: loaders.sassLoader
+          test: /\.(css)$/,
+          use: loaders.cssLoader
         },
         {
           test: /\.less$/,
           use: loaders.lessLoader
+        },
+        {
+          test: /\.(scss|css)$/,
+          use: loaders.sassLoader
         }
       ]
     },

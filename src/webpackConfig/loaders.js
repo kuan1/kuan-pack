@@ -6,7 +6,7 @@ const isExtract =
 
 // cssLoader
 const getCssLoader = name => {
-  return [
+  const loader = [
     {
       loader: !isExtract ? 'style-loader' : MiniCssExtractPlugin.loader
     }, // 将 JS 字符串生成为 style 节点
@@ -22,11 +22,14 @@ const getCssLoader = name => {
           })
         ]
       }
-    },
-    {
-      loader: `${name}-loader` // 将 Sass 编译成 CSS
     }
   ]
+  if (name) {
+    loader.push({
+      loader: `${name}-loader` // 将 Sass 编译成 CSS
+    })
+  }
+  return loader
 }
 
 // vue loader
@@ -71,6 +74,7 @@ const vueLoader = (() => {
 })()
 
 module.exports = {
+  cssLoader: getCssLoader(),
   lessLoader: getCssLoader('less'),
   sassLoader: getCssLoader('sass'),
   vueLoader
