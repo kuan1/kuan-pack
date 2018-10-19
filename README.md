@@ -53,6 +53,10 @@ module.exports = {
 
 v1.0.9
 
+- 单独设置 css loader
+
+v1.0.9
+
 - 默认 html 模板
 
 v1.0.8
