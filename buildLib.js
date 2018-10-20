@@ -1,6 +1,7 @@
 process.env.NODE_ENV = 'production'
 process.env.EXTRACT_CSS = '0'
 process.env.DISCARD_HTML = '0'
+process.env.DISABLE_CLEAN = '0'
 
 const { resolve } = require('./src/webpackConfig/utils')
 

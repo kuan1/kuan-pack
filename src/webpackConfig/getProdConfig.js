@@ -19,12 +19,17 @@ function getProdConfig(userConfig = {}) {
       new MiniCssExtractPlugin({
         filename: `./css/[${userConfig.libName || 'name'}].[hash:7].css`,
         chunkFilename: './css/[id].[hash:7].css'
-      }),
-      new CleanWebpackPlugin([webpackConfig.output.path || resolve('dist')], {
-        root: process.cwd()
       })
     ]
   })
+
+  if (process.env.DISABLE_CLEAN !== '0') {
+    finalConfig.plugins.push(
+      new CleanWebpackPlugin([webpackConfig.output.path || resolve('dist')], {
+        root: process.cwd()
+      })
+    )
+  }
   return finalConfig
 }
 

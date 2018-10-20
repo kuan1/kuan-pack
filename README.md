@@ -51,9 +51,10 @@ module.exports = {
 
 ## 更新
 
-v1.0.9
+v1.0.10
 
 - 单独设置 css loader
+- 关闭 clean-webpack-plugin: process.env.DISABLE_CLEAN = '0'
 
 v1.0.9
 
