@@ -75,7 +75,7 @@ module.exports = function getBaseConfig(userConfig) {
           use: loaders.lessLoader
         },
         {
-          test: /\.(scss|css)$/,
+          test: /\.scss$/,
           use: loaders.sassLoader
         }
       ]
