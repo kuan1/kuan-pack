@@ -51,6 +51,14 @@ module.exports = {
 
 ## 更新
 
+v1.0.12
+
+- svg
+
+v1.0.11
+
+- fix scss-loader
+
 v1.0.10
 
 - 单独设置 css loader

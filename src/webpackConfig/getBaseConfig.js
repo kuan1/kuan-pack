@@ -51,7 +51,7 @@ module.exports = function getBaseConfig(userConfig) {
           }
         },
         {
-          test: /\.(png|jpg|gif)$/,
+          test: /\.(png|jpg|gif|ico|svg)$/,
           loader: 'url-loader',
           options: {
             limit: 10000,
