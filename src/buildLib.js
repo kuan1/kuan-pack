@@ -1,16 +1,16 @@
 const webpack = require('webpack')
-const getProdCOnfig = require('./webpackConfig/getProdConfig')
 const nodeExternals = require('webpack-node-externals')
-const defaultConfig = require('./webpackConfig/default')
+
+const getDefault = require('./getConfig/getDefault')
+const getConfig = require('./getConfig')
 
 module.exports = (userConfig, onSuccess, onFail) => {
-  const options = {
-    ...defaultConfig,
-    ...userConfig
-  }
-  const webpackConfig = getProdCOnfig(userConfig)
+  const options = getDefault(userConfig)
+  const webpackConfig = getConfig(options)
+
   webpackConfig.externals = [nodeExternals()]
   delete webpackConfig.optimization
+
   const output = {
     filename: `${options.libName}.js`,
     library: options.libName,

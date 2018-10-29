@@ -1,15 +1,13 @@
 process.env.NODE_ENV = 'production'
-process.env.EXTRACT_CSS = '0'
-process.env.DISCARD_HTML = '0'
-process.env.DISABLE_CLEAN = '0'
 
-const { resolve } = require('./src/webpackConfig/utils')
+const { resolve } = require('./src/getConfig/utils')
 
 const { buildLib } = require('./src')
 
 buildLib({
   entry: resolve('test'),
-  libName: 'testBoundle',
+  libName: 'test',
   distPath: resolve('lib'), // 输入地址 默认： dist
+  htmlTemplate: false,
   extractCss: false
 })

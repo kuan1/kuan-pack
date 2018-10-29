@@ -1,11 +1,11 @@
 const webpack = require('webpack')
-const getProdCOnfig = require('./webpackConfig/getProdConfig')
+const getConfig = require('./getConfig')
 
 module.exports = (userConfig, onSuccess, onFail) => {
-  const webpackConfig = getProdCOnfig(userConfig)
+  const webpackConfig = getConfig(userConfig)
 
   webpack(webpackConfig, (err, stats) => {
-    const message = `${stats.toString({colors: true})} \n`
+    const message = `${stats.toString({ colors: true })} \n`
     if (err || stats.hasErrors()) {
       process.stdout.write('\x07') // 声音报警
       console.log(err || message)
@@ -13,16 +13,16 @@ module.exports = (userConfig, onSuccess, onFail) => {
         onFail({
           err,
           stats
-        });
+        })
       }
-      process.exit(1);
+      process.exit(1)
     }
 
     if (onSuccess) {
       onSuccess({
         stats
-      });
+      })
     }
     console.log(message)
-  });
+  })
 }

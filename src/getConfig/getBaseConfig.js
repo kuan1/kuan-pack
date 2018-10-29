@@ -5,15 +5,14 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const WebpackBar = require('webpackbar')
-const loaders = require('./loaders')
-const defaultConfig = require('./default')
+const getLoaders = require('./getloaders')
 
 const { resolve } = require('./utils')
 
 const isDev = process.env.NODE_ENV === 'development'
 console.log('当前环境 NODE_ENV:', process.env.NODE_ENV)
 
-module.exports = function getBaseConfig(userConfig) {
+module.exports = function getBaseConfig(options) {
   const {
     entry,
     publicPath,
@@ -22,10 +21,9 @@ module.exports = function getBaseConfig(userConfig) {
     htmlName,
     staticPath,
     config: configFormUser = {}
-  } = {
-    ...defaultConfig,
-    ...userConfig
-  }
+  } = options
+
+  const loaders = getLoaders(options)
 
   const webpackConfig = {
     devtool: isDev ? 'cheap-module-eval-source-map' : 'cheap-module-source-map', // output mode
@@ -134,7 +132,7 @@ module.exports = function getBaseConfig(userConfig) {
       new WebpackBar()
     ]
   }
-  if (process.env.DISCARD_HTML !== '0') {
+  if (options.htmlTemplate) {
     webpackConfig.plugins.push(
       new HtmlWebpackPlugin({
         template: htmlTemplate,

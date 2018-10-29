@@ -3,20 +3,15 @@ const WebpackDevServer = require('webpack-dev-server')
 const chalk = require('chalk')
 const portfinder = require('portfinder')
 
-const getBaseConfig = require('./webpackConfig/getBaseConfig')
-const defaultConfig = require('./webpackConfig/default')
+const getDefault = require('./getConfig/getDefault')
+const getConfig = require('./getConfig')
 
 const HOST = process.env.HOST || '0.0.0.0'
 
-module.exports = function dev(userConfig, onCompileDone) {
-  const webpackConfig = getBaseConfig(userConfig)
-  const {
-    port,
-    proxy
-  } = {
-    ...defaultConfig,
-    ...userConfig
-  }
+module.exports = function getDev(userConfig, onCompileDone) {
+  const options = getDefault(userConfig)
+  const webpackConfig = getConfig(userConfig)
+  const { port, proxy = {} } = options
   choosePort(port)
     .then(port => {
       if (!port) return null
@@ -24,14 +19,16 @@ module.exports = function dev(userConfig, onCompileDone) {
 
       const compiler = webpack(webpackConfig)
       compiler.hooks.done.tap('webpack dev', stats => {
-        const message = `${stats.toString({colors: true})} \n`
+        const message = `${stats.toString({ colors: true })} \n`
         if (stats.hasErrors()) {
           console.log(chalk.red(message))
           process.stdout.write('\x07') // make sound
           return
         }
         console.log(message)
-        console.log(`- App running at: ${chalk.cyan(`http://localhost:${port}`)}`)
+        console.log(
+          `- App running at: ${chalk.cyan(`http://localhost:${port}`)}`
+        )
         if (onCompileDone) {
           onCompileDone({
             stats
@@ -46,18 +43,18 @@ module.exports = function dev(userConfig, onCompileDone) {
         hot: true,
         quiet: true,
         headers: {
-          'access-control-allow-origin': '*',
+          'access-control-allow-origin': '*'
         },
         stats: 'normal', // minimal normal
         publicPath: webpackConfig.output.publicPath || '',
         watchOptions: {
-          ignored: /node_modules/,
+          ignored: /node_modules/
         },
         historyApiFallback: true,
         overlay: false,
         host: HOST,
         proxy,
-        ...(webpackConfig.devServer || {}),
+        ...(webpackConfig.devServer || {})
       }
 
       const server = new WebpackDevServer(compiler, serverConfig)
@@ -74,7 +71,6 @@ module.exports = function dev(userConfig, onCompileDone) {
       console.log(err)
     })
 }
-
 
 function choosePort(DEFAULT_PORT) {
   return new Promise((resolve, reject) => {
