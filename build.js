@@ -1,7 +1,8 @@
 process.env.NODE_ENV = 'production'
 
-const {
-  build
-} = require('./src')
+const { build } = require('./src')
 
-build()
+build({
+  entry: `${__dirname}/test`,
+  stylePath: 'test/style'
+})

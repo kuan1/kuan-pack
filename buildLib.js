@@ -9,5 +9,6 @@ buildLib({
   libName: 'test',
   distPath: resolve('lib'), // 输入地址 默认： dist
   htmlTemplate: false,
-  extractCss: false
+  extractCss: false,
+  stylePath: 'test/style'
 })

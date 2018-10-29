@@ -1,4 +1,7 @@
 body {
-  color: red;
-  background: url('./apple.jpg') center center no-repeat;
+  div {
+    display: flex;
+    transition: all 1s;
+    color: $aaa;
+  }
 }

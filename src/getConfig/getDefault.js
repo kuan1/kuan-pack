@@ -18,6 +18,7 @@ const defaultConfig = {
   libName: 'boundle', // 打包插件inde名字
   disabledClean: true, // 是否自动清空dist
   extractCss: true, // 抽取css
+  stylePath: 'src/style', // 设置less，sass变量文件夹
   config: {} // 会合并到webpack.config
 }
 

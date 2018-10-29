@@ -1,4 +1,6 @@
+const fs = require('fs')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const { resolve } = require('./utils')
 
 module.exports = options => {
   const extractCss = process.env.NODE_ENV === 'production' && options.extractCss
@@ -27,6 +29,29 @@ module.exports = options => {
       loader.push({
         loader: `${name}-loader` // 将 Sass 编译成 CSS
       })
+    }
+    if (['less', 'sass'].includes(name)) {
+      const nameMirror = {
+        less: 'less',
+        sass: 'scss'
+      }
+      const variablePath = resolve(
+        `${options.stylePath}/variable.${nameMirror[name]}`
+      )
+      const mixinsPath = resolve(
+        `${options.stylePath}/mixins.${nameMirror[name]}`
+      )
+      const resources = []
+      if (fs.existsSync(variablePath)) resources.push(variablePath)
+      if (fs.existsSync(mixinsPath)) resources.push(mixinsPath)
+      if (resources.length) {
+        loader.push({
+          loader: 'sass-resources-loader',
+          options: {
+            resources
+          }
+        })
+      }
     }
     return loader
   }
