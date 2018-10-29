@@ -51,6 +51,11 @@ module.exports = {
 
 ## 更新
 
+v1.0.13
+
+- 添加 sourceMap
+- 去 console.log
+
 v1.0.12
 
 - svg

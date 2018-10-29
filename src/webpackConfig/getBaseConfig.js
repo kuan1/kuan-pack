@@ -10,6 +10,7 @@ const defaultConfig = require('./default')
 
 const { resolve } = require('./utils')
 
+const isDev = process.env.NODE_ENV === 'development'
 console.log('当前环境 NODE_ENV:', process.env.NODE_ENV)
 
 module.exports = function getBaseConfig(userConfig) {
@@ -27,6 +28,7 @@ module.exports = function getBaseConfig(userConfig) {
   }
 
   const webpackConfig = {
+    devtool: isDev ? 'cheap-module-eval-source-map' : 'cheap-module-source-map', // output mode
     entry,
     output: {
       path: distPath,
