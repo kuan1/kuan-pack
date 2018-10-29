@@ -7,13 +7,16 @@ module.exports = {
   staticPath: path.resolve(__dirname, 'public'), // 静态资源目录 public
   htmlTemplate: 'index.html', // 模板html 默认：根目录index.html > 内部自定义模板
   htmlName: 'index.html', // 输出html路径 默认：'index.html'
-  proxy: { // 代理地址
+  proxy: {
+    // 代理地址
     '/api': {
       target: 'https://luzhongkuan.cn/api',
       changeOrigin: true
     }
   },
-  historyApiFallback: true, // history路由刷新
+  disabledClean: true, // 是否自动清空dist
+  extractCss: true, // 抽取css
+  stylePath: 'src/style', // 设置less，sass变量文件夹
   config: {
     // 会合并到webpack.config
   }

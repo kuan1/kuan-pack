@@ -53,6 +53,7 @@ module.exports = {
 
 v1.0.13
 
+- 添加 sass-resources-loader
 - 添加 sourceMap
 - 去 console.log
 
