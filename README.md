@@ -55,7 +55,7 @@ module.exports = {
 
 ## 更新
 
-v1.0.15
+v1.1.2
 
 - @babel/runtime
 
