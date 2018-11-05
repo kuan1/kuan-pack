@@ -8,7 +8,9 @@ module.exports = (userConfig, onSuccess, onFail) => {
   const options = getDefault(userConfig)
   const webpackConfig = getConfig(options)
 
-  webpackConfig.externals = [nodeExternals({whitelist: ['@babel/runtime']})]
+  webpackConfig.externals = [
+    nodeExternals({ whitelist: [/^\@babel\/runtime/] })
+  ]
   delete webpackConfig.optimization
 
   const output = {
