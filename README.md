@@ -55,6 +55,10 @@ module.exports = {
 
 ## 更新
 
+v1.0.15
+
+- @babel/runtime
+
 v1.0.14
 
 - 默认安装 sass-resources-loader
