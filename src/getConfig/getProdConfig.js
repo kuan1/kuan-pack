@@ -37,8 +37,7 @@ function getProdConfig(baseConfig, userConfig = {}) {
       })
     ]
   })
-
-  if (userConfig.disabledClean !== false) {
+  if (!userConfig.disabledClean) {
     finalConfig.plugins.push(
       new CleanWebpackPlugin([finalConfig.output.path || resolve('dist')], {
         root: process.cwd()

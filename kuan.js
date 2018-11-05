@@ -14,7 +14,7 @@ module.exports = {
       changeOrigin: true
     }
   },
-  disabledClean: true, // 是否自动清空dist
+  disabledClean: false, // 是否自动清空dist
   extractCss: true, // 抽取css
   stylePath: 'src/style', // 设置less，sass变量文件夹
   config: {
