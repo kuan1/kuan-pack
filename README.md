@@ -55,6 +55,10 @@ module.exports = {
 
 ## 更新
 
+v1.1.4
+
+"@babel/plugin-syntax-dynamic-import",
+
 v1.1.2
 
 - @babel/runtime
