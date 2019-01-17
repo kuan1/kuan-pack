@@ -48,7 +48,6 @@ module.exports = function getBaseConfig(options) {
           options: {
             presets: ['@babel/preset-env'],
             plugins: ['@babel/plugin-transform-runtime',  "@babel/plugin-syntax-dynamic-import"],
-            
           }
         },
         {

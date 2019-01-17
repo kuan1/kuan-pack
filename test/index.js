@@ -3,9 +3,5 @@ import App from './App.vue'
 import './test.scss'
 
 new Vue({
-  el: '#app',
-  template: '<App/>',
-  components: {
-    App
-  }
-})
+  render: h => h(App)
+}).$mount('#app')
