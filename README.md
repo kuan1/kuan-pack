@@ -7,7 +7,7 @@
 ```
 yarn add kuan-pack --dev
 # or
-npm run kuan-pack -D
+npm i kuan-pack -D
 ```
 
 ## 开发

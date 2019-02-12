@@ -9,7 +9,7 @@ const getLoaders = require('./getloaders')
 
 const { resolve } = require('./utils')
 
-const isDev = process.env.NODE_ENV === 'development'
+// const isDev = process.env.NODE_ENV === 'development'
 console.log('当前环境 NODE_ENV:', process.env.NODE_ENV)
 
 module.exports = function getBaseConfig(options) {
@@ -26,7 +26,7 @@ module.exports = function getBaseConfig(options) {
   const loaders = getLoaders(options)
 
   const webpackConfig = {
-    devtool: isDev ? 'cheap-module-eval-source-map' : 'cheap-module-source-map', // output mode
+    // devtool: isDev ? 'cheap-module-eval-source-map' : 'cheap-module-source-map', // output mode
     entry,
     output: {
       path: distPath,
@@ -47,7 +47,10 @@ module.exports = function getBaseConfig(options) {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-transform-runtime',  "@babel/plugin-syntax-dynamic-import"],
+            plugins: [
+              '@babel/plugin-transform-runtime',
+              '@babel/plugin-syntax-dynamic-import'
+            ]
           }
         },
         {

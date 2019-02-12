@@ -45,7 +45,7 @@ module.exports = function getDev(userConfig, onCompileDone) {
         headers: {
           'access-control-allow-origin': '*'
         },
-        stats: 'normal', // minimal normal
+        stats: 'errors-only', // minimal normal
         publicPath: webpackConfig.output.publicPath || '',
         watchOptions: {
           ignored: /node_modules/
