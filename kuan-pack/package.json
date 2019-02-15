@@ -24,6 +24,13 @@
   ],
   "author": "luzhongk@126.com",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kuan1/kuan-pack.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kuan1/kuan-pack/issues"
+  },
   "devDependencies": {
     "node-sass": "^4.11.0",
     "rimraf": "^2.6.3",

@@ -46,7 +46,7 @@ module.exports = {
 
 v2.0.0
 
-- 重写 kuan-pack，结构更加清晰
+- 重写 kuan-pack，代码优化、配置优化
 - 去除 vue 支持，准备单独发布 vue 支持版本
 
 v1.1.4
