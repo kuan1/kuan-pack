@@ -38,6 +38,7 @@ module.exports = function startDev(webpackConfig = config, onCompileDone) {
       const serverConfig = {
         disableHostCheck: true,
         compress: true,
+        clientLogLevel: 'none',
         hot: true,
         quiet: true,
         headers: {
