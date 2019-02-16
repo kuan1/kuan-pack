@@ -8,19 +8,20 @@ const babelLoader = {
   }
 }
 
+const postCssLoader = {
+  loader: 'postcss-loader',
+  options: {
+    plugins: () => [
+      require('autoprefixer')({
+        browsers: ['> 1%', 'last 2 versions']
+      })
+    ]
+  }
+}
 const generateCssLoader = (extract = true) => [
   extract ? MiniCssExtractPlugin.loader : 'style-loader',
   'css-loader',
-  {
-    loader: 'postcss-loader',
-    options: {
-      plugins: () => [
-        require('autoprefixer')({
-          browsers: ['> 1%', 'last 2 versions']
-        })
-      ]
-    }
-  }
+  postCssLoader
 ]
 
 const generateSassLoader = (extract = true) => [
@@ -38,6 +39,23 @@ const generateLessLoader = (extract = true) => [
   }
 ]
 
+const generateVueLoader = (extract = true) => {
+  const styleLoader = !extract ? 'vue-style-loader' : MiniCssExtractPlugin.loader
+  return {
+    loaders: {
+      css: [styleLoader, 'css-loader', postcssLoader],
+      sass: [styleLoader, 'css-loader', postcssLoader, 'sass-loader']
+    },
+    cacheBusting: true,
+    transformToRequire: {
+      video: ['src', 'poster'],
+      source: 'src',
+      img: 'src',
+      image: 'xlink:href'
+    }
+  }
+}
+
 const generateUrlLoader = (dir = 'images') => ({
   loader: 'url-loader',
   options: {
@@ -51,5 +69,6 @@ module.exports = {
   generateCssLoader,
   generateSassLoader,
   generateLessLoader,
+  generateVueLoader,
   generateUrlLoader
 }

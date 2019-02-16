@@ -20,6 +20,11 @@ module.exports = {
     noParse: [/moment.js/],
     rules: [
       {
+        test: /\.vue$/,
+        exclude: /node_modules/,
+        use: loaders.generateVueLoader()
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: loaders.babelLoader

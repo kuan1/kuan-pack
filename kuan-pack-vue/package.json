@@ -1,7 +1,7 @@
 {
   "name": "kuan-pack-vue",
-  "version": "2.0.0",
-  "description": "webpack",
+  "version": "2.0.0beta",
+  "description": "webpack vue",
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development node dev",
@@ -20,6 +20,7 @@
   "keywords": [
     "kuan-pack",
     "webpack",
+    "vue",
     "luzhongk"
   ],
   "author": "luzhongk@126.com",
