@@ -1,19 +1,8 @@
 {
-  "name": "test",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "dev": "kuan-pack dev",
-    "build": "kuan-pack build",
-    "build:lib": "kuan-pack build:lib",
-    "kuan-pack -v": "kuan-pack -v",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "kuan-pack dev"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "kuan-pack": "../kuan-pack"
+    "kuan-pack": "^2.0.0-beta"
   }
 }

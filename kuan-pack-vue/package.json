@@ -13,8 +13,8 @@
     "kuan-pack": "bin/kuan-pack.js"
   },
   "files": [
+    "build",
     "bin",
-    "src",
     "index.html"
   ],
   "keywords": [
