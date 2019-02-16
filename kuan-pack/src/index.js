@@ -2,9 +2,13 @@ import { a, change } from './a'
 
 import './style.scss'
 
+
+document.body.innerHTML += `
+  <img src="${require('./apple.jpg')}" />
+`
+
 setInterval(() => {
   change()
-  console.log([...['你好啊'], a])
-  document.body.innerHTML += a
+  console.log(a)
   change()
 }, 1000)
