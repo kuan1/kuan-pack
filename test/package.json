@@ -3,6 +3,6 @@
     "dev": "kuan-pack dev"
   },
   "dependencies": {
-    "kuan-pack": "^2.0.0-beta"
+    "kuan-pack-vue": "^2.0.0-beta"
   }
 }
