@@ -2,6 +2,7 @@ const fs = require('fs')
 const WebpackBar = require('webpackbar')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const nodeExternals = require('webpack-node-externals')
 
 const loaders = require('./loaders')
 
@@ -25,6 +26,7 @@ module.exports = userOptions => {
       publicPath: options.publicPath,
       filename: `${options.libName}.js`
     },
+    externals: nodeExternals(),
     module: {
       noParse: [/moment.js/],
       rules: [
