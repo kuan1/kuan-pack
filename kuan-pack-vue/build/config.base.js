@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackBar = require('webpackbar')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const loaders = require('./loaders')
 const options = require('./defaultOptions')
@@ -21,8 +22,7 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        exclude: /node_modules/,
-        use: loaders.generateVueLoader()
+        loader: 'vue-loader'
       },
       {
         test: /\.js$/,
@@ -53,6 +53,7 @@ module.exports = {
   },
   plugins: [
     new WebpackBar(),
+    new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: options.html,
       path: options.publicPath,
@@ -76,6 +77,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.vue', '.json'],
     alias: {
+      vue$: 'vue/dist/vue.esm.js',
       '@': resolve('src')
     }
   }

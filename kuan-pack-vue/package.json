@@ -1,6 +1,6 @@
 {
   "name": "kuan-pack-vue",
-  "version": "2.0.0beta",
+  "version": "2.0.0-beta",
   "description": "webpack vue",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "kuan-pack-vue": "bin/kuan-pack-vue.js"
+    "kuan-pack": "bin/kuan-pack.js"
   },
   "files": [
     "bin",
@@ -35,7 +35,8 @@
   "devDependencies": {
     "node-sass": "^4.11.0",
     "rimraf": "^2.6.3",
-    "sass-loader": "^7.1.0"
+    "sass-loader": "^7.1.0",
+    "vue": "^2.6.6"
   },
   "dependencies": {
     "@babel/core": "^7.2.2",
@@ -58,10 +59,14 @@
     "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^2.1.1",
     "url-loader": "^1.1.2",
+    "vue-loader": "^15.6.2",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.6",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14",
     "webpack-merge": "^4.2.1",
+    "webpack-node-externals": "^1.7.2",
     "webpackbar": "^3.1.5"
   }
 }

@@ -7,5 +7,4 @@ module.exports = {
   // distPath: resolve('dist'), // 输入地址 默认： dist
   // html: resolveFile('index.html') || `${__dirname}/../index.html`, // 默认html模板
   // libName: pkgName, // 打包文件名字
-  // externals: {} // 打包忽略
 }

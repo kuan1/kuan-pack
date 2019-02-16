@@ -1,14 +1,6 @@
-import { a, change } from './a'
+import Vue from 'vue'
+import App from './App.vue'
 
-import './style.scss'
-
-
-document.body.innerHTML += `
-  <img src="${require('./apple.jpg')}" />
-`
-
-setInterval(() => {
-  change()
-  console.log(a)
-  change()
-}, 1000)
+new Vue({
+  render: h => h(App)
+}).$mount('#app')

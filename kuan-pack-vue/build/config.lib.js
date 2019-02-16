@@ -3,6 +3,7 @@ const WebpackBar = require('webpackbar')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const nodeExternals = require('webpack-node-externals')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const loaders = require('./loaders')
 
@@ -30,6 +31,10 @@ module.exports = userOptions => {
     module: {
       noParse: [/moment.js/],
       rules: [
+        {
+          test: /\.vue$/,
+          loader: 'vue-loader'
+        },
         {
           test: /\.js$/,
           exclude: /node_modules/,
@@ -59,6 +64,7 @@ module.exports = userOptions => {
     },
     plugins: [
       new WebpackBar(),
+      new VueLoaderPlugin(),
       new CopyWebpackPlugin(
         fs.existsSync(options.staticPath)
           ? [

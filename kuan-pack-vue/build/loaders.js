@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const isDev = process.env.NODE_ENV === 'development'
 
 const babelLoader = {
   loader: 'babel-loader',
@@ -19,7 +20,7 @@ const postCssLoader = {
   }
 }
 const generateCssLoader = (extract = true) => [
-  extract ? MiniCssExtractPlugin.loader : 'style-loader',
+  (extract && !isDev) ? MiniCssExtractPlugin.loader : 'vue-tyle-loader',
   'css-loader',
   postCssLoader
 ]
@@ -39,23 +40,6 @@ const generateLessLoader = (extract = true) => [
   }
 ]
 
-const generateVueLoader = (extract = true) => {
-  const styleLoader = !extract ? 'vue-style-loader' : MiniCssExtractPlugin.loader
-  return {
-    loaders: {
-      css: [styleLoader, 'css-loader', postcssLoader],
-      sass: [styleLoader, 'css-loader', postcssLoader, 'sass-loader']
-    },
-    cacheBusting: true,
-    transformToRequire: {
-      video: ['src', 'poster'],
-      source: 'src',
-      img: 'src',
-      image: 'xlink:href'
-    }
-  }
-}
-
 const generateUrlLoader = (dir = 'images') => ({
   loader: 'url-loader',
   options: {
@@ -69,6 +53,5 @@ module.exports = {
   generateCssLoader,
   generateSassLoader,
   generateLessLoader,
-  generateVueLoader,
   generateUrlLoader
 }
