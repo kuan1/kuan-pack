@@ -20,7 +20,7 @@ const postCssLoader = {
   }
 }
 const generateCssLoader = (extract = true) => [
-  (extract && !isDev) ? MiniCssExtractPlugin.loader : 'vue-tyle-loader',
+  (extract && !isDev) ? MiniCssExtractPlugin.loader : 'vue-style-loader',
   'css-loader',
   postCssLoader
 ]
