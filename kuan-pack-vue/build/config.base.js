@@ -42,7 +42,7 @@ module.exports = {
         use: loaders.generateLessLoader()
       },
       {
-        test: /\.(png|jpg|jpeg|gif|ico|svg)$/gi,
+        test: /\.(png|jpg|jpeg|gif|ico|svg)$/i,
         use: loaders.generateUrlLoader('images')
       },
       {

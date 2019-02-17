@@ -37,7 +37,7 @@ module.exports = {
         use: loaders.generateLessLoader()
       },
       {
-        test: /\.(png|jpg|jpeg|gif|ico|svg)$/gi,
+        test: /\.(png|jpg|jpeg|gif|ico|svg)$/i,
         use: loaders.generateUrlLoader('images')
       },
       {
@@ -59,12 +59,12 @@ module.exports = {
     new CopyWebpackPlugin(
       fs.existsSync(options.staticPath)
         ? [
-            {
-              from: options.staticPath,
-              to: '',
-              ignore: ['.*']
-            }
-          ]
+          {
+            from: options.staticPath,
+            to: '',
+            ignore: ['.*']
+          }
+        ]
         : []
     )
   ],
