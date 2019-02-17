@@ -54,7 +54,7 @@ module.exports = {
       hash: true
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].css'
+      filename: 'css/[name].css'
     }),
     new CopyWebpackPlugin(
       fs.existsSync(options.staticPath)
