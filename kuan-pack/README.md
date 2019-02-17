@@ -5,7 +5,7 @@
 ## 安装
 
 ```
-yarn add kuan-pack --dev
+yarn add kuan-pack --dev # 打包vue安装kuan-pack-vue，使用方法一样
 # or
 npm i kuan-pack -D
 ```
@@ -36,17 +36,18 @@ module.exports = {
   // staticPath: resolve('public'), // 静态资源目录 public
   // distPath: resolve('dist'), // 输入地址 默认： dist
   // html: resolveFile('index.html') || `${__dirname}/../index.html`, // 默认html模板
-  // libName: pkgName // 打包文件名字
+  // libName: pkgName, // 打包文件名字
+  // externals: {} // 打包忽略
 }
 
 ```
 
 ## 更新
 
-v2.0.0
+v2.0.0-beta
 
 - 重写 kuan-pack，代码优化、配置优化
-- 去除 vue 支持，准备单独发布 vue 支持版本
+- 拆分kuan-pack：kuan-pack为普通js打包工具；kuan-pack-vue为vue版打包工具
 
 v1.1.4
 
