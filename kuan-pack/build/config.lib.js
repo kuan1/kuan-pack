@@ -24,7 +24,9 @@ module.exports = userOptions => {
     output: {
       path: options.distPath,
       publicPath: options.publicPath,
-      filename: `${options.libName}.js`
+      filename: `${options.libName}.js`,
+      library: options.libName,
+      libraryTarget: 'umd'
     },
     externals: nodeExternals(),
     module: {
@@ -62,12 +64,12 @@ module.exports = userOptions => {
       new CopyWebpackPlugin(
         fs.existsSync(options.staticPath)
           ? [
-            {
-              from: options.staticPath,
-              to: '',
-              ignore: ['.*']
-            }
-          ]
+              {
+                from: options.staticPath,
+                to: '',
+                ignore: ['.*']
+              }
+            ]
           : []
       )
     ],
