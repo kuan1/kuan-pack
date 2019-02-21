@@ -80,7 +80,7 @@ module.exports = userOptions => {
       )
     ],
     resolve: {
-      extensions: ['.js', '.scss'],
+      extensions: ['.js', '.scss', '.vue', '.json'],
       alias: {
         '@': resolve('src')
       }
