@@ -44,6 +44,7 @@
     "@babel/runtime": "^7.3.1",
     "autoprefixer": "^9.4.7",
     "babel-loader": "^8.0.5",
+    "babel-plugin-transform-es2017-object-entries": "^0.0.5",
     "chalk": "^2.4.2",
     "copy-webpack-plugin": "^4.6.0",
     "cross-env": "^5.2.0",

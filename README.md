@@ -1,11 +1,12 @@
-# kuan-pack
+# kuan-pack && kuan-pack-vue
 
-> 简化 webpack，安装直接使用，不需要安装其他依赖，甚至不需要配置。新版本已经去除 Vue 支持，
+> 简化 webpack，安装直接使用，不需要安装其他依赖，甚至不需要配置。
+> (kuan-pack-vue 和 kuan-pack 使用方法一致, kuan-pack-vue 用户打包 vue 项目)
 
 ## 安装
 
 ```
-yarn add kuan-pack --dev # 打包vue安装kuan-pack-vue，使用方法一样
+yarn add kuan-pack --dev
 # or
 npm i kuan-pack -D
 ```
@@ -44,10 +45,15 @@ module.exports = {
 
 ## 更新
 
+2.0.4
+
+- bug 处理
+- babel 添加对 Object.entres 支持
+
 v2.0.0-beta
 
 - 重写 kuan-pack，代码优化、配置优化
-- 拆分kuan-pack：kuan-pack为普通js打包工具；kuan-pack-vue为vue版打包工具
+- 拆分 kuan-pack：kuan-pack 为普通 js 打包工具；kuan-pack-vue 为 vue 版打包工具
 
 v1.1.4
 

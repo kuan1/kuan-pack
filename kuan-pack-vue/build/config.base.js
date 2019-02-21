@@ -65,17 +65,17 @@ module.exports = {
     new CopyWebpackPlugin(
       fs.existsSync(options.staticPath)
         ? [
-          {
-            from: options.staticPath,
-            to: '',
-            ignore: ['.*']
-          }
-        ]
+            {
+              from: options.staticPath,
+              to: '',
+              ignore: ['.*']
+            }
+          ]
         : []
     )
   ],
   resolve: {
-    extensions: ['.js', '.jsx', '.vue', '.json'],
+    extensions: ['.vue', '.js', '.jsx', '.json'],
     alias: {
       vue$: 'vue/dist/vue.esm.js',
       '@': resolve('src')

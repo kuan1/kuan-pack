@@ -3,8 +3,27 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const babelLoader = {
   loader: 'babel-loader',
   options: {
-    presets: ['@babel/preset-env'],
-    plugins: ['@babel/plugin-transform-runtime']
+    presets: [
+      [
+        '@babel/preset-env',
+        {
+          targets: {
+            browsers: [
+              'last 2 versions',
+              'Firefox ESR',
+              '> 1%',
+              'ie >= 9',
+              'iOS >= 8',
+              'Android >= 4'
+            ]
+          }
+        }
+      ]
+    ],
+    plugins: [
+      'transform-es2017-object-entries',
+      '@babel/plugin-transform-runtime'
+    ]
   }
 }
 
