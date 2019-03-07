@@ -1,4 +1,5 @@
 const fs = require('fs')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackBar = require('webpackbar')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -53,6 +54,11 @@ module.exports = {
   },
   plugins: [
     new WebpackBar(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+      }
+    }),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: options.html,

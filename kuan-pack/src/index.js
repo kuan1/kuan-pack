@@ -9,7 +9,7 @@ const a = {
   d: '测试'
 }
 
-console.log(Object.entries(a))
+console.log(process.env.NODE_ENV, Object.entries(a))
 
 // document.body.innerHTML += `
 //   <img src="${require('./apple.jpg')}" />
