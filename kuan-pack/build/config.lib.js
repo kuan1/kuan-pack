@@ -50,7 +50,7 @@ module.exports = userOptions => {
           use: loaders.generateLessLoader(false)
         },
         {
-          test: /\.(png|jpg|jpeg|gif|ico|svg)$/gi,
+          test: /\.(png|jpg|jpeg|gif|ico|svg)$/i,
           use: loaders.generateUrlLoader('images')
         },
         {
