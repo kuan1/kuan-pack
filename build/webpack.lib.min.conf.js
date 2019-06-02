@@ -23,7 +23,7 @@ module.exports = {
     globalObject: 'this',
     umdNamedDefine: true
   },
-  externals: nodeExternals(),
+  externals: nodeExternals({ importType: 'umd' }),
   devtool: 'cheap-module-eval-source-map',
   module: {
     noParse: [/moment.js/],
@@ -79,7 +79,7 @@ module.exports = {
       new UglifyJsPlugin({
         cache: true,
         parallel: true,
-        sourceMap: false,
+        sourceMap: true,
         uglifyOptions: {
           warnings: false
         }

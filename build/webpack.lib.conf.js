@@ -19,10 +19,10 @@ module.exports = {
     filename: `${defaults.libName}.js`,
     library: defaults.libName,
     libraryTarget: 'umd',
-    globalObject: 'this',
-    umdNamedDefine: true
+    // globalObject: 'this',
+    // umdNamedDefine: true
   },
-  externals: nodeExternals(),
+  externals: nodeExternals({ importType: 'umd' }),
   devtool: 'cheap-module-eval-source-map',
   module: {
     noParse: [/moment.js/],

@@ -5,4 +5,4 @@ function extend(config) {
   config.output.path = `${__dirname}/lib`
 }
 
-buildLib({ extend, config })
+buildLib({ extend })
