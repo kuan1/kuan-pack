@@ -9,6 +9,9 @@
     "dev": "cross-env NODE_ENV=production node test-dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "kuan-pack": "bin/kuan-pack.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kuan1/kuan-pack.git"
@@ -19,7 +22,12 @@
     "vue",
     "luzhongk"
   ],
-  "keywords": [],
+  "keywords": [
+    "kuan-pack",
+    "webpack",
+    "vue",
+    "luzhongk"
+  ],
   "author": "luzhongk@126.com",
   "license": "ISC",
   "bugs": {
