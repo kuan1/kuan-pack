@@ -1,9 +1,9 @@
-// const dev = require('./build/dev')
-// const build = require('./build/build')
+const dev = require('./build/dev')
+const build = require('./build/build')
+const buildLib = require('./build/buildLib')
 
-// module.exports = {
-//   dev,
-//   build
-// }
-
-require('./build/webpack.lib.min.conf')
+module.exports = {
+  dev,
+  build,
+  buildLib
+}

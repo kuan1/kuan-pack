@@ -82,6 +82,6 @@ module.exports = {
     }
   },
   optimization: {
-    minimizer: false
+    minimize: false
   }
 }

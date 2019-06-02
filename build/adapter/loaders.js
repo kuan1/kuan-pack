@@ -63,7 +63,7 @@ const generateLessLoader = (extract = true) => [
 const generateUrlLoader = (dir = 'images') => ({
   loader: 'url-loader',
   options: {
-    limit: 5000,
+    limit: 3000,
     name: `${dir}/[name].[ext]?[hash]`
   }
 })

@@ -4,6 +4,7 @@
   "description": "webpack",
   "main": "index.js",
   "scripts": {
+    "build:lib": "cross-env NODE_ENV=production node test-build-lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

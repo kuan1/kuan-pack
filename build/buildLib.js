@@ -1,6 +1,6 @@
-const build = require('build')
-const libConf = require('webpack.lib.conf.js')
-const libMinConf = require('webpack.lib.min.conf.js')
+const build = require('./build')
+const libConf = require('./webpack.lib.conf.js')
+const libMinConf = require('./webpack.lib.min.conf.js')
 
 const noop = config => config
 
