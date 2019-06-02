@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const WebpackBar = require('webpackbar')
 const nodeExternals = require('webpack-node-externals')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
@@ -60,6 +61,11 @@ module.exports = {
   plugins: [
     new WebpackBar(),
     new VueLoaderPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'production')
+      }
+    }),
   ],
   resolve: {
     extensions: ['.js', '.vue', '.scss', 'less', 'css', '.json'],

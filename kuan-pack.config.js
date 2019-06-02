@@ -2,7 +2,7 @@ const { resolve } = require('./build/adapter/utils')
 
 module.exports = {
   // port: 8000, // 开发端口
-  // proxy: {}, // 代理地址
+  // proxy: {'/api': ''}, // 代理地址
   entry: { index: resolve('test') }, // 打包入口 默认： src/index.js
   publicPath: './', // cdn路径 默认：空
   // staticPath: resolve('public'), // 静态资源目录 public
