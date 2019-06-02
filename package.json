@@ -17,10 +17,9 @@
     "url": "git+https://github.com/kuan1/kuan-pack.git"
   },
   "files": [
-    "kuan-pack",
-    "webpack",
-    "vue",
-    "luzhongk"
+    "build",
+    "bin",
+    "public"
   ],
   "keywords": [
     "kuan-pack",
