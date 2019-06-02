@@ -1,8 +1,0 @@
-{
-  "scripts": {
-    "dev": "kuan-pack dev"
-  },
-  "dependencies": {
-    "kuan-pack-vue": "^2.0.0-beta"
-  }
-}
