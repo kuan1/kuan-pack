@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build:lib": "cross-env NODE_ENV=production node test-build-lib",
+    "build": "cross-env NODE_ENV=production node test-build",
+    "dev": "cross-env NODE_ENV=production node test-dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -1,7 +1,7 @@
 const { resolve, resolveFile, requireFile } = require('./utils')
 
 // package.json文件
-const { pkgName = 'main' } = requireFile('package.json') || {}
+const { name: pkgName = 'main' } = requireFile('package.json') || {}
 
 // webpack默认配置
 const defaultConfig = {

@@ -1,7 +1,4 @@
-const fs = require('fs')
 const WebpackBar = require('webpackbar')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const nodeExternals = require('webpack-node-externals')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
@@ -63,17 +60,6 @@ module.exports = {
   plugins: [
     new WebpackBar(),
     new VueLoaderPlugin(),
-    new CopyWebpackPlugin(
-      fs.existsSync(defaults.staticPath)
-        ? [
-          {
-            from: defaults.staticPath,
-            to: '',
-            ignore: ['.*']
-          }
-        ]
-        : []
-    )
   ],
   resolve: {
     extensions: ['.js', '.vue', '.scss', 'less', 'css', '.json'],

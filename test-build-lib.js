@@ -1,3 +1,7 @@
 const { buildLib } = require('./index')
 
-buildLib()
+function extend(config) {
+  config.output.path = `${__dirname}/lib`
+}
+
+buildLib(extend)

@@ -4,7 +4,7 @@ module.exports = {
   // port: 8000, // 开发端口
   // proxy: {}, // 代理地址
   entry: { index: resolve('test') }, // 打包入口 默认： src/index.js
-  // publicPath: '', // cdn路径 默认：空
+  publicPath: './', // cdn路径 默认：空
   // staticPath: resolve('public'), // 静态资源目录 public
   // distPath: resolve('dist'), // 输入地址 默认： dist
   // html: resolveFile('index.html') || `${__dirname}/../index.html`, // 默认html模板

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2>测试</h2>
+    <h2>测试4</h2>
+    <img src="./images/apple.jpg" alt="">
+    <img src="./images/timg.jpeg" alt="">
   </div>
 </template>
 
@@ -10,5 +12,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+h2 {
+  color: red;
+}
 </style>
