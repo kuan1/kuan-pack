@@ -17,8 +17,8 @@
     "url": "git+https://github.com/kuan1/kuan-pack.git"
   },
   "files": [
-    "build",
     "bin",
+    "build",
     "public"
   ],
   "keywords": [
