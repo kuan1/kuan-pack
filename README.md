@@ -1,7 +1,6 @@
-# kuan-pack && kuan-pack-vue
+# kuan-pack
 
 > 简化 webpack，安装直接使用，不需要安装其他依赖，甚至不需要配置。
-> (kuan-pack-vue 和 kuan-pack 使用方法一致, kuan-pack-vue 用户打包 vue 项目)
 
 ## 安装
 
