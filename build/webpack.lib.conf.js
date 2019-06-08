@@ -2,7 +2,6 @@ const webpack = require('webpack')
 const WebpackBar = require('webpackbar')
 const nodeExternals = require('webpack-node-externals')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-
 const loaders = require('./adapter/loaders')
 
 // 默认配置
@@ -23,7 +22,6 @@ module.exports = {
     umdNamedDefine: true
   },
   externals: nodeExternals({ importType: 'umd' }),
-  devtool: 'cheap-module-eval-source-map',
   module: {
     noParse: [/moment.js/],
     rules: [

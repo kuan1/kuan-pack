@@ -24,7 +24,6 @@ module.exports = {
     umdNamedDefine: true
   },
   externals: nodeExternals({ importType: 'umd' }),
-  devtool: 'cheap-module-eval-source-map',
   module: {
     noParse: [/moment.js/],
     rules: [
