@@ -46,6 +46,10 @@ module.exports = {
 
 2.0.4
 
+- .browserslistrc
+
+  2.0.4
+
 - bug 处理
 - babel 添加对 Object.entres 支持
 

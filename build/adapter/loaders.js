@@ -4,23 +4,7 @@ const isDev = process.env.NODE_ENV === 'development'
 const babelLoader = {
   loader: 'babel-loader',
   options: {
-    presets: [
-      [
-        '@babel/preset-env',
-        {
-          targets: {
-            browsers: [
-              'last 2 versions',
-              'Firefox ESR',
-              '> 1%',
-              'ie >= 9',
-              'iOS >= 8',
-              'Android >= 4'
-            ]
-          }
-        }
-      ]
-    ],
+    presets: [['@babel/preset-env']],
     plugins: [
       'transform-es2017-object-entries',
       '@babel/plugin-transform-runtime',
@@ -32,11 +16,7 @@ const babelLoader = {
 const postCssLoader = {
   loader: 'postcss-loader',
   options: {
-    plugins: () => [
-      require('autoprefixer')({
-        browsers: ['> 1%', 'last 2 versions']
-      })
-    ]
+    plugins: () => [require('autoprefixer')()]
   }
 }
 const generateCssLoader = (extract = true) => [
