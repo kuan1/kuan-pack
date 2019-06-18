@@ -1,6 +1,6 @@
 {
   "name": "kuan-pack",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "webpack",
   "main": "index.js",
   "scripts": {
