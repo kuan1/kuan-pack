@@ -9,7 +9,10 @@ function buildLib({ extend = noop, config = libMinConf } = {}) {
   return new Promise(resolve => {
     // 暴露出去修改config的方法
     extend(config)
-    build(config, resolve)
+    build({
+      config,
+      onSuccess: resolve
+    })
   })
 }
 
