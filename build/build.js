@@ -1,8 +1,8 @@
 const webpack = require('webpack')
-const config = require('./webpack.prod.conf')
+const defaultConfig = require('./webpack.prod.conf')
 
-module.exports = (webpackConfig = config, onSuccess) => {
-  webpack(webpackConfig, (err, stats) => {
+module.exports = ({ config = defaultConfig, onSuccess } = {}) => {
+  webpack(config, (err, stats) => {
     const message = `${stats.toString({ colors: true })} \n`
     if (err || stats.hasErrors()) {
       process.stdout.write('\x07') // 声音报警

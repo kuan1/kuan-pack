@@ -5,9 +5,9 @@ const libExtract = require('./webpack.lib.extract.conf')
 
 const noop = config => config
 
-function buildLib(extend = noop, config = libMinConf) {
+function buildLib({ extend = noop, config = libMinConf } = {}) {
   return new Promise(resolve => {
-    // 暴露出去修改的方法
+    // 暴露出去修改config的方法
     extend(config)
     build(config, resolve)
   })
@@ -15,19 +15,35 @@ function buildLib(extend = noop, config = libMinConf) {
 
 module.exports = async ({
   extend = noop,
-  onSuccess = noop,
   config,
+  onSuccess = noop,
   extract = false
 } = {}) => {
-  if (!config) {
-    // 默认配置
-    await buildLib(extend, libConf)
-    await buildLib(extend, libMinConf)
-  } else if (extract) {
-    await buildLib(extend, libExtract)
-  } else {
-    // 自定义打包配置
-    await buildLib(extend, config)
+  // 自定义打包配置
+  if (config) {
+    await buildLib({
+      extend,
+      config
+    })
+    return onSuccess()
   }
-  onSuccess()
+  // 抽取css
+  if (extract) {
+    await buildLib({
+      extend,
+      config: libExtract
+    })
+    return onSuccess()
+  }
+
+  // 默认配置
+  await buildLib({
+    extend,
+    config: libConf
+  })
+  await buildLib({
+    extend,
+    config: libMinConf
+  })
+  return onSuccess()
 }

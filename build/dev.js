@@ -9,12 +9,20 @@ const defaults = require('./adapter/defaults')
 const { port, proxy = {} } = defaults
 const HOST = process.env.HOST || '0.0.0.0'
 
+const noop = config => config
+
 // 开启开发服务器
-module.exports = function startDev(webpackConfig = config, onCompileDone) {
+module.exports = function startDev({
+  config: webpackConfig = config, // webpack config配置
+  extend = noop, // 修改webpack config
+  onCompileDone = noop // 编译完成
+} = {}) {
   choosePort(port)
     .then(port => {
       if (!port) return null
       webpackConfig.mode = 'development'
+
+      extend(webpackConfig) // 允许修改配置的引用
 
       const compiler = webpack(webpackConfig)
       compiler.hooks.done.tap('webpack dev', stats => {
@@ -28,11 +36,9 @@ module.exports = function startDev(webpackConfig = config, onCompileDone) {
         console.log(
           `- App running at: \n ${chalk.cyan(`http://localhost:${port}`)}`
         )
-        if (onCompileDone) {
-          onCompileDone({
-            stats
-          })
-        }
+        onCompileDone({
+          stats
+        })
       })
 
       const serverConfig = {
@@ -69,6 +75,7 @@ module.exports = function startDev(webpackConfig = config, onCompileDone) {
     })
 }
 
+// 查找没有被占用的端口号
 function choosePort(DEFAULT_PORT) {
   return new Promise((resolve, reject) => {
     portfinder.basePort = DEFAULT_PORT
