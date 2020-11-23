@@ -7,7 +7,7 @@ module.exports = async function build(config) {
       if (err || (stats && stats.hasErrors())) {
         process.stdout.write('\x07') // 声音报警
         console.error(err || message)
-        reject(error || '打包失败')
+        reject(err || '打包失败')
       } else {
         resolve('打包成功')
       }

@@ -6,12 +6,11 @@ program
   .option('-c, --config <configPath>', 'webpack config configPath', 'webpack.config.js')
 
 program
-  .command('dev <entry>')
+  .command('dev [entry]')
   .description('webpack serve for production')
-  .action(() => {
-    process.env.NODE_ENV = 'development'
-    const { dev } = require('../index')
-    dev()
+  .action((entry) => {
+    const dev = require('../src/dev')
+    dev(entry)
   })
 
 program

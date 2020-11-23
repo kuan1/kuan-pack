@@ -4,18 +4,7 @@ const TerserPlugin = require('terser-webpack-plugin')
 
 const baseConfig = require("./weback.base")
 const { resolveApp } = require('../utils/resolve')
-const { WEBPACK_CONFIG_FILE, ROOT_PACKAGE_JSON_FILE } = require('../constants')
-
-function getRootWebpackConfig() {
-  return fs.pathExistsSync(WEBPACK_CONFIG_FILE) ? require(WEBPACK_CONFIG_FILE) : {}
-}
-
-function getRootPkg() {
-  if (fs.pathExistsSync(ROOT_PACKAGE_JSON_FILE)) {
-    return require(ROOT_PACKAGE_JSON_FILE)
-  }
-  return { name: 'index' }
-}
+const { getRootWebpackConfig, getRootPkg } = require("../utils")
 
 module.exports = function getPackageConfig() {
   const { name } = getRootPkg()

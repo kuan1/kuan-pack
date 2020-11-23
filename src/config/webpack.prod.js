@@ -2,11 +2,8 @@ const WebpackBar = require("webpackbar")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { merge } = require('webpack-merge')
 
-const { getRootWebpackConfig, getHTMLTemplate } = require('../utils')
-
-exports.getDevConfig = function getDevConfig() {
-  const baseConfig = require('./weback.base')
-  const devConfig = {
+exports.getProdConfig = function getProdConfig() {
+  const prodConfig = {
     output: {
       chunkFilename: '[name].js',
     },
@@ -28,13 +25,10 @@ exports.getDevConfig = function getDevConfig() {
         color: '#07c160',
       }),
       new HtmlWebpackPlugin({
-        template: getHTMLTemplate(),
+        template: defaults.html,
+        path: defaults.publicPath,
         hash: true
       }),
     ],
   }
-
-  const rootConfig = getRootWebpackConfig()
-
-  return merge(baseConfig, devConfig, rootConfig)
 }

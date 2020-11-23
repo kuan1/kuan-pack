@@ -42,7 +42,6 @@
     "autoprefixer": "^9.0.0",
     "babel-loader": "^8.2.1",
     "babel-plugin-import": "^1.13.1",
-    "consola": "^2.15.0",
     "css-loader": "^4.0.0",
     "eslint": "^7.14.0",
     "fs-extra": "^9.0.1",

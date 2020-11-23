@@ -2,6 +2,8 @@ const webpack = require('webpack')
 const FriendlyErrorsPlugin = require('@nuxt/friendly-errors-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const { STYLE_EXTS, SCRIPT_EXTS, POSTCSS_CONFIG_FILE } = require('../constants')
+const { resolveApp } = require('../utils/resolve')
+const { getEntryFile } = require("../utils")
 
 const CSS_LOADERS = [
   'style-loader',
@@ -27,8 +29,13 @@ const plugins = [
 
 const baseConfig = {
   mode: process.env.NODE_ENV || 'development',
+  entry: getEntryFile(),
   resolve: {
     extensions: [...SCRIPT_EXTS, ...STYLE_EXTS],
+    alias: {
+      vue: 'vue/dist/vue.esm-browser.js',
+      '@': resolveApp('src')
+    },
   },
   module: {
     rules: [
