@@ -2,11 +2,12 @@ const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 const chalk = require('chalk')
 const portfinder = require('portfinder')
-const { setEnv, getRootWebpackConfig, logServerInfo } = require("./utils")
+const { getRootWebpackConfig, logServerInfo } = require("./utils")
+const setEnv = require('./utils/setEnv')
 
 // 开启开发服务器
-module.exports = async function startDev(entry) {
-  setEnv({ NODE_ENV: 'development', KUAN_PACK_ENTRY: entry || '' })
+module.exports = async function startDev(entry, { config, public }) {
+  setEnv({ NODE_ENV: 'development', KUAN_PACK_ENTRY: entry || '', KUAN_PACK_WEBPACK_CONFIG: config, KUAN_PACK_PUBLIC: public })
 
   const port = await choosePort(process.env.PORT || 8080)
 

@@ -9,6 +9,7 @@ module.exports = async function build(config) {
         console.error(err || message)
         reject(err || '打包失败')
       } else {
+        console.log(message)
         resolve('打包成功')
       }
     })

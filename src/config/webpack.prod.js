@@ -1,34 +1,16 @@
-const WebpackBar = require("webpackbar")
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { merge } = require('webpack-merge')
+const { getDevConfig } = require("./webpack.dev")
+const { getRootWebpackConfig } = require('../utils')
 
 exports.getProdConfig = function getProdConfig() {
   const prodConfig = {
-    output: {
-      chunkFilename: '[name].js',
+    mode: 'production',
+    stats: 'none',
+    performance: {
+      maxAssetSize: 5 * 1024 * 1024,
+      maxEntrypointSize: 5 * 1024 * 1024,
     },
-    optimization: {
-      splitChunks: {
-        cacheGroups: {
-          chunks: {
-            chunks: 'all',
-            minChunks: 2,
-            minSize: 0,
-            name: 'chunks',
-          },
-        },
-      },
-    },
-    plugins: [
-      new WebpackBar({
-        name: 'Kuan-pack',
-        color: '#07c160',
-      }),
-      new HtmlWebpackPlugin({
-        template: defaults.html,
-        path: defaults.publicPath,
-        hash: true
-      }),
-    ],
   }
+
+  return merge(getDevConfig(), prodConfig, getRootWebpackConfig())
 }

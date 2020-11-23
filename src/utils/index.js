@@ -13,10 +13,6 @@ exports.logServerInfo = (port) => {
   console.log(`  ${chalk.bold('Network')}:  ${chalk.cyan(network)}`)
 }
 
-exports.setEnv = (config) => {
-  Object.assign(process.env, config)
-}
-
 exports.getRootWebpackConfig = () => {
   return fs.pathExistsSync(WEBPACK_CONFIG_FILE) ? require(WEBPACK_CONFIG_FILE) : {}
 }

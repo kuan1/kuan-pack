@@ -1,19 +1,22 @@
-# kuan-pack 3.0
+# kuan-pack(不建议其他人使用，推荐 @vue/cli)
 
-> 当前版本可以打包 vue3.0 版本，如果打包 vue2.0 切换 2.1.5
+> vue3.0 快速打包工具。
 
-## install
+## 介绍
 
 ```bash
-yarn add kuan-pack -D
-# or
-npm i kuan-pack -D
-```
+Usage: kuan-pack [options] [command]
 
-## babel
+Options:
+  -v, --version              output the version number
+  -c, --config <configPath>  webpack config configPath (default: "webpack.config.js")
+  -s --public <staticPath>   webpack staticPath setting (default: "public")
+  -h, --help                 output usage information
 
-```js
-module.exports = {
-  presets: ['kuan-pack/preset'],
-}
+Commands:
+  dev [entry]                webpack serve for production
+  build [entry]              webpack build for production
+  build:package [entry]      webpack build for package
+  gen                        generate babel.config.js
+  test                       kuan-pack for test success?
 ```

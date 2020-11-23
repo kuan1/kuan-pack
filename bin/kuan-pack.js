@@ -1,33 +1,33 @@
 #!/usr/bin/env node
 const program = require('commander')
-
 program
   .version(require('../package').version, '-v, --version')
   .option('-c, --config <configPath>', 'webpack config configPath', 'webpack.config.js')
+  .option('-s, --public <staticPath>', 'webpack staticPath setting', 'public')
+
 
 program
   .command('dev [entry]')
   .description('webpack serve for production')
   .action((entry) => {
     const dev = require('../src/dev')
-    dev(entry)
+    dev(entry, program)
   })
 
 program
-  .command('build')
+  .command('build [entry]')
   .description('webpack build for production')
-  .action(() => {
-    process.env.NODE_ENV = 'production'
-    const { build } = require('../index')
-    build()
+  .action((entry) => {
+    const build = require('../src/build-prod')
+    build(entry, program)
   })
 
 program
-  .command('build:package')
+  .command('build:package [entry]')
   .description('webpack build for package')
-  .action(() => {
+  .action((entry) => {
     const build = require('../src/build-package')
-    build()
+    build(entry, program)
   })
 
 program

@@ -1,5 +1,5 @@
-const WebpackBar = require("webpackbar")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { merge } = require('webpack-merge')
 
 const { getRootWebpackConfig, getHTMLTemplate } = require('../utils')
@@ -23,10 +23,6 @@ exports.getDevConfig = function getDevConfig() {
       },
     },
     plugins: [
-      new WebpackBar({
-        name: 'Kuan-pack',
-        color: '#07c160',
-      }),
       new HtmlWebpackPlugin({
         template: getHTMLTemplate(),
         hash: true
