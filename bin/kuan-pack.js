@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-
 const program = require('commander')
 
 program
   .version(require('../package').version, '-v, --version')
+  .option('-c, --config <configPath>', 'webpack config configPath', 'webpack.config.js')
 
 program
-  .command('dev')
+  .command('dev <entry>')
   .description('webpack serve for production')
   .action(() => {
     process.env.NODE_ENV = 'development'
@@ -24,12 +24,19 @@ program
   })
 
 program
-  .command('buildLib')
-  .description('webpack build for lib')
+  .command('build:package')
+  .description('webpack build for package')
   .action(() => {
-    process.env.NODE_ENV = 'production'
-    const { buildLib } = require('../index')
-    buildLib()
+    const build = require('../src/build-package')
+    build()
+  })
+
+program
+  .command('gen babel')
+  .description("generate babel.config.js")
+  .action(() => {
+    const genBabelConfig = require('../src/gen-babel-config')
+    genBabelConfig()
   })
 
 program
@@ -40,5 +47,3 @@ program
   })
 
 program.parse(process.argv)
-
-if (program.args.length < 1) return program.help()
