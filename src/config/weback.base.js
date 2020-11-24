@@ -1,6 +1,5 @@
 const webpack = require('webpack')
 const WebpackBar = require("webpackbar")
-const FriendlyErrorsPlugin = require('@nuxt/friendly-errors-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const { STYLE_EXTS, SCRIPT_EXTS, POSTCSS_CONFIG_FILE } = require('../constants')
 const { resolveApp } = require('../utils/resolve')
@@ -22,10 +21,6 @@ const plugins = [
     NODE_ENV: JSON.stringify(process.env.NODE_ENV),
   }),
   new VueLoaderPlugin(),
-  new FriendlyErrorsPlugin({
-    clearConsole: false,
-    logLevel: 'WARNING',
-  }),
   new WebpackBar({
     name: 'Kuan-pack',
     color: '#07c160',

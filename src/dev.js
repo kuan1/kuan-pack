@@ -1,28 +1,20 @@
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
-const chalk = require('chalk')
-const portfinder = require('portfinder')
-const { getRootWebpackConfig, logServerInfo } = require("./utils")
+const { clear: clearConsole } = require("@luzhongk/node-logger")
+const { getRootWebpackConfig } = require("./utils")
 const setEnv = require('./utils/setEnv')
+const createCompiler = require("./utils/createCompiler")
+const findPorter = require("./utils/findPorter")
+
+const isInteractive = process.stdout.isTTY
 
 // 开启开发服务器
 module.exports = async function startDev(entry, { config, public }) {
   setEnv({ NODE_ENV: 'development', KUAN_PACK_ENTRY: entry || '', KUAN_PACK_WEBPACK_CONFIG: config, KUAN_PACK_PUBLIC: public })
 
-  const port = await choosePort(process.env.PORT || 8080)
-
+  const port = await findPorter(process.env.PORT || 8080)
   const { getDevConfig } = require('./config/webpack.dev')
-  const compiler = webpack(getDevConfig())
-  compiler.hooks.done.tap('webpack dev', stats => {
-    const message = `${stats.toString('minimal')} \n`
-    if (stats.hasErrors()) {
-      console.log(chalk.red(message))
-      process.stdout.write('\x07') // make sound
-      return
-    }
-    console.log(message)
-    logServerInfo(port)
-  })
+  const compiler = createCompiler({ webpack, config: getDevConfig(), port })
 
   const serverConfig = {
     disableHostCheck: true,
@@ -35,7 +27,6 @@ module.exports = async function startDev(entry, { config, public }) {
     },
     historyApiFallback: true,
     overlay: false,
-    stats: 'errors-only',
     host: process.env.HOST || '0.0.0.0',
     ...getRootWebpackConfig().devServer
   }
@@ -44,22 +35,10 @@ module.exports = async function startDev(entry, { config, public }) {
 
   server.listen(port, serverConfig.host, err => {
     if (err) {
-      console.log(err)
-      return
+      return console.log(err)
     }
-  })
-}
-
-// 查找没有被占用的端口号
-function choosePort(basePort) {
-  return new Promise((resolve, reject) => {
-    portfinder.basePort = basePort
-    portfinder.getPort((err, port) => {
-      if (err) {
-        reject(err)
-      } else {
-        resolve(port)
-      }
-    })
+    if (isInteractive) {
+      clearConsole()
+    }
   })
 }
