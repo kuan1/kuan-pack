@@ -6,8 +6,6 @@ const setEnv = require('./utils/setEnv')
 const createCompiler = require("./utils/createCompiler")
 const findPorter = require("./utils/findPorter")
 
-const isInteractive = process.stdout.isTTY
-
 // 开启开发服务器
 module.exports = async function startDev(entry, { config, public }) {
   setEnv({ NODE_ENV: 'development', KUAN_PACK_ENTRY: entry || '', KUAN_PACK_WEBPACK_CONFIG: config, KUAN_PACK_PUBLIC: public })
@@ -19,14 +17,14 @@ module.exports = async function startDev(entry, { config, public }) {
   const serverConfig = {
     disableHostCheck: true,
     compress: true,
-    clientLogLevel: 'none',
+    logLevel: 'silent',
     hot: true,
-    quiet: true,
     watchOptions: {
       ignored: /node_modules/
     },
     historyApiFallback: true,
     overlay: false,
+    // stats: 'none',
     host: process.env.HOST || '0.0.0.0',
     ...getRootWebpackConfig().devServer
   }
@@ -36,9 +34,6 @@ module.exports = async function startDev(entry, { config, public }) {
   server.listen(port, serverConfig.host, err => {
     if (err) {
       return console.log(err)
-    }
-    if (isInteractive) {
-      clearConsole()
     }
   })
 }
