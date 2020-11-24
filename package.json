@@ -15,7 +15,7 @@
   },
   "files": [
     "bin",
-    "build",
+    "src",
     "public"
   ],
   "keywords": [
