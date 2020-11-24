@@ -1,6 +1,6 @@
 {
   "name": "kuan-pack",
-  "version": "2.1.5",
+  "version": "3.0.0-beta",
   "description": "webpack and vue",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,7 @@
   "keywords": [
     "kuan-pack",
     "webpack",
-    "vue"
+    "vue3.0"
   ],
   "author": "luzhongk@126.com",
   "license": "ISC",

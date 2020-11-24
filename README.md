@@ -1,8 +1,8 @@
-# kuan-pack(不建议其他人使用，推荐 @vue/cli)
+## kuan-pack(不建议其他人使用，推荐 @vue/cli)
 
 > vue3.0 快速打包工具。
 
-## 介绍
+### 介绍
 
 ```bash
 Usage: kuan-pack [options] [command]
