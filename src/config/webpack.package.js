@@ -7,14 +7,15 @@ const { resolveApp } = require('../utils/resolve')
 const { getRootWebpackConfig, getRootPkg } = require("../utils")
 
 module.exports = function getPackageConfig() {
-  const { name } = getRootPkg()
+  const name = process.env.KUAN_PACK_NAME || getRootPkg().name
+  const src = resolveApp(process.env.KUAN_PACK_ENTRY || 'src')
 
   const config = {
     mode: 'production',
     stats: 'none',
     entry: {
-      [name]: resolveApp('src'),
-      [`${name}.min`]: resolveApp('src'),
+      [name]: src,
+      [`${name}.min`]: src,
     },
     output: {
       path: resolveApp('lib'),

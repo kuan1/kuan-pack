@@ -4,7 +4,7 @@ program
   .version(require('../package').version, '-v, --version')
   .option('-c, --config <configPath>', 'webpack config configPath', 'webpack.config.js')
   .option('-s, --public <staticPath>', 'webpack staticPath setting', 'public')
-
+  .option('-n, --libName <libraryName>', 'custom library name')
 
 program
   .command('dev [entry]')
