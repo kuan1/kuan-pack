@@ -3,6 +3,9 @@ const { getDevConfig } = require("./webpack.dev")
 const { getRootWebpackConfig } = require('../utils')
 
 exports.getProdConfig = function getProdConfig() {
+  const devConfig = getDevConfig()
+  delete devConfig.devtool
+
   const prodConfig = {
     mode: 'production',
     stats: 'none',
@@ -12,5 +15,5 @@ exports.getProdConfig = function getProdConfig() {
     },
   }
 
-  return merge(getDevConfig(), prodConfig, getRootWebpackConfig())
+  return merge(devConfig, prodConfig, getRootWebpackConfig())
 }

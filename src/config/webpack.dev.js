@@ -10,6 +10,7 @@ exports.getDevConfig = function getDevConfig() {
     output: {
       chunkFilename: '[name].js',
     },
+    devtool: "source-map",
     optimization: {
       splitChunks: {
         cacheGroups: {

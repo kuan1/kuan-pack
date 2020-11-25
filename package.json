@@ -1,9 +1,10 @@
 {
   "name": "kuan-pack",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "webpack and vue",
   "main": "index.js",
   "scripts": {
+    "postinstall": "kuan-pack gen babel",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {

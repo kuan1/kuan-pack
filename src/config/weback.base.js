@@ -6,10 +6,10 @@ const { resolveApp } = require('../utils/resolve')
 const { getEntryFile } = require("../utils")
 
 const CSS_LOADERS = [
-  'style-loader',
-  'css-loader',
+  require.resolve('style-loader'),
+  require.resolve('css-loader'),
   {
-    loader: 'postcss-loader',
+    loader: require.resolve('postcss-loader'),
     options: {
       postcssOptions: require(POSTCSS_CONFIG_FILE),
     },
@@ -17,14 +17,14 @@ const CSS_LOADERS = [
 ]
 
 const plugins = [
-  new webpack.DefinePlugin({
-    NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-  }),
-  new VueLoaderPlugin(),
   new WebpackBar({
     name: 'Kuan-pack',
     color: '#07c160',
   }),
+  new webpack.DefinePlugin({
+    NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+  }),
+  new VueLoaderPlugin(),
 ]
 
 const baseConfig = {
@@ -43,7 +43,7 @@ const baseConfig = {
         test: /\.vue$/,
         use: [
           {
-            loader: 'vue-loader',
+            loader: require.resolve('vue-loader'),
             options: {
               compilerOptions: {
                 preserveWhitespace: false,
@@ -55,7 +55,7 @@ const baseConfig = {
       {
         test: /\.(js|ts|jsx|tsx)$/,
         exclude: /node_modules\//,
-        use: ['babel-loader'],
+        loader: require.resolve('babel-loader'),
       },
       {
         test: /\.css$/,
@@ -65,7 +65,7 @@ const baseConfig = {
       {
         test: /\.less$/,
         sideEffects: true,
-        use: [...CSS_LOADERS, 'less-loader'],
+        use: [...CSS_LOADERS, require.resolve('less-loader')],
       }
     ],
   },
