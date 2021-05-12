@@ -48,7 +48,7 @@
     "less": "^3.12.2",
     "less-loader": "^7.1.0",
     "portfinder": "^1.0.28",
-    "postcss": "^7.0.0",
+    "postcss": "^8.2.10",
     "postcss-loader": "^4.1.0",
     "style-loader": "^2.0.0",
     "terser-webpack-plugin": "^5.0.3",
